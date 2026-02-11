@@ -1,3 +1,4 @@
+```mermaid
 sequenceDiagram
     participant Service as MappingStateService
     participant Entry as requirement_pipeline.py
@@ -56,3 +57,4 @@ sequenceDiagram
     
     Service->>LangGraph: observable_workflow.ainvoke(state, config)
     Note over LangGraph: Execute workflow nodes
+```
