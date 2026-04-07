@@ -1,0 +1,173 @@
+{
+  "created_at": "2026-04-07T04:53:24.742279Z",
+  "updated_at": "2026-04-07T04:53:24.742279Z",
+  "created_by": "dhanushpathi@bighammer.com",
+  "updated_by": "dhanushpathi@bighammer.com",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 1,
+  "pipeline_name": "scn_b_7",
+  "pipeline_key": "scn_b_7",
+  "bh_project_id": 2,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "local_dhanu_test",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "scn_b_7",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [],
+    "connections": {
+      "read_azure_blob_file_connection": {
+        "name": "read_azure_blob_file_connection",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-localblobdbt"
+      },
+      "local_dbt_dbt": {
+        "name": "local_dbt_dbt",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-localdbtdbt"
+      }
+    },
+    "sources": {
+      "read_file_source": {
+        "name": "read_file_source",
+        "source_type": "File",
+        "file_name": "scenario/scn_b.csv",
+        "connection": {
+          "$ref": "#/connections/read_azure_blob_file_connection"
+        }
+      }
+    },
+    "targets": {
+      "write_to_bronze_target": {
+        "name": "write_to_bronze_target",
+        "target_type": "Relational",
+        "table_name": "scn_b",
+        "connection": {
+          "$ref": "#/connections/local_dbt_dbt"
+        },
+        "load_mode": "append"
+      },
+      "write_to_silver_raw_target": {
+        "name": "write_to_silver_raw_target",
+        "target_type": "Relational",
+        "table_name": "scn_b",
+        "connection": {
+          "$ref": "#/connections/local_dbt_dbt"
+        },
+        "load_mode": "append"
+      }
+    },
+    "transformations": [
+      {
+        "name": "read_file",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/read_file_source"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_ingest_metadata",
+        "transformation": "Expression",
+        "dependent_on": [
+          "read_file"
+        ],
+        "derived_fields": [
+          {
+            "name": "ingest_timestamp",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_date",
+            "expression": "current_date()"
+          }
+        ]
+      },
+      {
+        "name": "write_to_bronze",
+        "transformation": "Writer",
+        "dependent_on": [
+          "add_ingest_metadata"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_bronze_target"
+        }
+      },
+      {
+        "name": "cleanse_rules",
+        "transformation": "Mapper",
+        "dependent_on": [
+          "add_ingest_metadata"
+        ]
+      },
+      {
+        "name": "dq_checks",
+        "transformation": "DataQuality",
+        "dependent_on": [
+          "cleanse_rules"
+        ],
+        "dq_rules": []
+      },
+      {
+        "name": "write_to_silver_raw",
+        "transformation": "Writer",
+        "dependent_on": [
+          "dq_checks"
+        ],
+        "target": {
+          "$ref": "#/targets/write_to_silver_raw_target"
+        }
+      }
+    ],
+    "description": "Ingest files to bronze then cleanse/DQ to silver (medallion) in one Spark job"
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
