@@ -1,0 +1,214 @@
+{
+  "created_at": "2026-04-09T07:55:31.464835Z",
+  "updated_at": "2026-04-09T07:55:31.464835Z",
+  "created_by": "dhanushpathi@bighammer.com",
+  "updated_by": "dhanushpathi@bighammer.com",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "flow_id": 5,
+  "flow_name": "scn-test-2_21",
+  "flow_key": "scn_test_2_21",
+  "recipient_email": {},
+  "notes": null,
+  "tags": null,
+  "bh_project_name": "local_dhanu_test",
+  "bh_project_id": 2,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 5
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 5,
+        "data": {
+          "flow_id": 5,
+          "flow_name": "scn-test-2_21",
+          "flow_key": "scn_test_2_21",
+          "bh_project_id": 2,
+          "recipient_email": {},
+          "notes": null,
+          "tags": null,
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 11,
+        "data": {
+          "flow_pipeline_mapping_id": 11,
+          "flow_id": 5,
+          "pipeline_id": 11,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 30,
+        "data": {
+          "flow_parameter_id": 30,
+          "flow_id": 5,
+          "parameter_name": "compute_type",
+          "parameter_value": "AZURE_FUNCTION",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 31,
+        "data": {
+          "flow_parameter_id": 31,
+          "flow_id": 5,
+          "parameter_name": "cloud_type",
+          "parameter_value": "aws",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 5,
+        "data": {
+          "flow_definition_id": 5,
+          "flow_id": 5,
+          "flow_json": {
+            "$schema": "https://json-schema.org/draft-07/schema#",
+            "name": "scn_test_2_21",
+            "flow_name": "scn-test-2_21",
+            "flow_id": 5,
+            "flow_key": "scn_test_2_21",
+            "flow_type": "INGESTION",
+            "description": "scenario two",
+            "version": "1.0.0",
+            "project_id": 2,
+            "project_name": "local_dhanu_test",
+            "cron_expression": null,
+            "tenant_id": 1,
+            "flow_tags": [
+              {
+                "key": "drn",
+                "value": "12346"
+              },
+              {
+                "key": "environment",
+                "value": "dev"
+              }
+            ],
+            "parameters": [
+              {
+                "key": "cloud_type",
+                "value": "aws"
+              },
+              {
+                "key": "compute_type",
+                "value": "AZURE_FUNCTION"
+              }
+            ],
+            "tasks": [
+              {
+                "task_id": "Create Compute",
+                "type": "CreateCompute",
+                "depends_on": [],
+                "airflow_connection_id": "<<airflow_connection_id>>",
+                "compute_type": "${compute_type}",
+                "cloud_type": "${cloud_type}",
+                "compute_config": {
+                  "function_app_name": "bhai-catalog-api-svrlss",
+                  "function_name": "PreIngestRun",
+                  "resource_group": "bh-nprd-d-westus3-rg",
+                  "region": "westus3",
+                  "function_key": null,
+                  "function_url": "https://bhai-catalog-api-svrlss.azurewebsites.net/api/PreIngestRun?code=ocjq2olTCaBnDIP5GdoFTvjdY26x5oSOHX-viZqsN5xjAzFuNyAOQw=="
+                },
+                "cluster_name": "pre-ingest-anal"
+              },
+              {
+                "task_id": "Run Job",
+                "type": "SubmitJob",
+                "depends_on": [
+                  "Create Compute"
+                ],
+                "pipeline_id": "<<pipeline_id>>",
+                "compute_type": "${compute_type}",
+                "cloud_type": "${cloud_type}",
+                "job_flow_id": "{{ task_instance.xcom_pull(task_ids='Create Compute', key='return_value') }}",
+                "pipeline_name": "<<pipeline_name>>"
+              },
+              {
+                "task_id": "Delete Compute",
+                "type": "DeleteCompute",
+                "depends_on": [
+                  "Run Job"
+                ],
+                "airflow_connection_id": "<<airflow_connection_id>>",
+                "compute_type": "${compute_type}",
+                "cloud_type": "${cloud_type}",
+                "compute_id": "{{ task_instance.xcom_pull(task_ids='Create Compute', key='return_value') }}"
+              }
+            ],
+            "template_parameters": [
+              {
+                "key": "airflow_connection_id",
+                "value": "<<airflow_connection_id>>"
+              },
+              {
+                "key": "pipeline_id",
+                "value": "<<pipeline_id>>"
+              },
+              {
+                "key": "pipeline_name",
+                "value": "<<pipeline_name>>"
+              }
+            ]
+          },
+          "schema_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 5,
+        "data": {
+          "flow_deployment_id": 5,
+          "flow_id": 5,
+          "bh_env_id": 3,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
