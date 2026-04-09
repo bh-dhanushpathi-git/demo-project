@@ -1,0 +1,335 @@
+{
+  "created_at": "2026-04-09T03:56:53.225302Z",
+  "updated_at": "2026-04-09T03:56:53.225302Z",
+  "created_by": "dhanushpathi@bighammer.com",
+  "updated_by": "dhanushpathi@bighammer.com",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "flow_id": 3,
+  "flow_name": "scn-test-1_20",
+  "flow_key": "scn_test_1_20",
+  "recipient_email": {},
+  "notes": null,
+  "tags": null,
+  "bh_project_name": "local_dhanu_test",
+  "bh_project_id": 2,
+  "alert_settings": {
+    "on_job_start": false,
+    "on_job_failure": false,
+    "on_job_success": false,
+    "long_running": false
+  },
+  "_graph": {
+    "root": {
+      "model": "Flow",
+      "pk": 3
+    },
+    "nodes": [
+      {
+        "model": "Flow",
+        "pk": 3,
+        "data": {
+          "flow_id": 3,
+          "flow_name": "scn-test-1_20",
+          "flow_key": "scn_test_1_20",
+          "bh_project_id": 2,
+          "recipient_email": {},
+          "notes": null,
+          "tags": null,
+          "status": "active",
+          "alert_settings": {
+            "on_job_start": false,
+            "on_job_failure": false,
+            "on_job_success": false,
+            "long_running": false
+          },
+          "bh_bundle_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 7,
+        "data": {
+          "flow_pipeline_mapping_id": 7,
+          "flow_id": 3,
+          "pipeline_id": 7,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 6,
+        "data": {
+          "flow_pipeline_mapping_id": 6,
+          "flow_id": 3,
+          "pipeline_id": 6,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowPipelineMapping",
+        "pk": 5,
+        "data": {
+          "flow_pipeline_mapping_id": 5,
+          "flow_id": 3,
+          "pipeline_id": 5,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 25,
+        "data": {
+          "flow_parameter_id": 25,
+          "flow_id": 3,
+          "parameter_name": "task_id_to_watch",
+          "parameter_value": "run_job",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 24,
+        "data": {
+          "flow_parameter_id": 24,
+          "flow_id": 3,
+          "parameter_name": "suffix",
+          "parameter_value": ".json",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 23,
+        "data": {
+          "flow_parameter_id": 23,
+          "flow_id": 3,
+          "parameter_name": "prefix",
+          "parameter_value": "logs/",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 22,
+        "data": {
+          "flow_parameter_id": 22,
+          "flow_id": 3,
+          "parameter_name": "parallelization_factor",
+          "parameter_value": 3,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 21,
+        "data": {
+          "flow_parameter_id": 21,
+          "flow_id": 3,
+          "parameter_name": "execute_in_parallel",
+          "parameter_value": true,
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 26,
+        "data": {
+          "flow_parameter_id": 26,
+          "flow_id": 3,
+          "parameter_name": "compute_type",
+          "parameter_value": "AZURE_FUNCTION",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowParameter",
+        "pk": 27,
+        "data": {
+          "flow_parameter_id": 27,
+          "flow_id": 3,
+          "parameter_name": "cloud_type",
+          "parameter_value": "aws",
+          "parameter_type": "USER",
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDefinition",
+        "pk": 3,
+        "data": {
+          "flow_definition_id": 3,
+          "flow_id": 3,
+          "flow_json": {
+            "$schema": "https://json-schema.org/draft-07/schema#",
+            "name": "scn_test_1_20",
+            "flow_name": "scn-test-1_20",
+            "flow_id": 3,
+            "flow_key": "scn_test_1_20",
+            "flow_type": "INGESTION",
+            "description": "scenario-1",
+            "version": "1.0.0",
+            "project_id": 2,
+            "project_name": "local_dhanu_test",
+            "cron_expression": null,
+            "tenant_id": 1,
+            "flow_tags": [
+              {
+                "key": "drn",
+                "value": "12346"
+              },
+              {
+                "key": "environment",
+                "value": "dev"
+              }
+            ],
+            "parameters": [
+              {
+                "key": "cloud_type",
+                "value": "aws"
+              },
+              {
+                "key": "compute_type",
+                "value": "AZURE_FUNCTION"
+              },
+              {
+                "key": "execute_in_parallel",
+                "value": true
+              },
+              {
+                "key": "parallelization_factor",
+                "value": 3
+              },
+              {
+                "key": "prefix",
+                "value": "logs/"
+              },
+              {
+                "key": "suffix",
+                "value": ".json"
+              },
+              {
+                "key": "task_id_to_watch",
+                "value": "run_job"
+              }
+            ],
+            "tasks": [
+              {
+                "task_id": "Create Compute",
+                "type": "CreateCompute",
+                "depends_on": [],
+                "airflow_connection_id": "<<airflow_connection_id>>",
+                "compute_type": "${compute_type}",
+                "cloud_type": "${cloud_type}",
+                "compute_config": {
+                  "function_app_name": "bhai-catalog-api-svrlss",
+                  "function_name": "PreIngestRun",
+                  "resource_group": "bh-nprd-d-westus3-rg",
+                  "region": "westus3",
+                  "function_key": null,
+                  "function_url": "https://bhai-catalog-api-svrlss.azurewebsites.net/api/PreIngestRun?code=ocjq2olTCaBnDIP5GdoFTvjdY26x5oSOHX-viZqsN5xjAzFuNyAOQw=="
+                },
+                "cluster_name": "pre-ingest-anal"
+              },
+              {
+                "task_id": "Run Jobs",
+                "type": "SubmitMultipleJobs",
+                "depends_on": [
+                  "Create Compute"
+                ],
+                "parallelization_factor": "${parallelization_factor}",
+                "execute_in_parallel": "${execute_in_parallel}",
+                "pipelines": [
+                  {
+                    "id": 5,
+                    "name": "output_converted_20"
+                  },
+                  {
+                    "id": 6,
+                    "name": "output_converted_psv_20"
+                  },
+                  {
+                    "id": 7,
+                    "name": "output_converted_tsv_20"
+                  }
+                ],
+                "airflow_connection_id": "<<airflow_connection_id>>",
+                "compute_type": "${compute_type}",
+                "cloud_type": "${cloud_type}",
+                "compute_id": "{{ task_instance.xcom_pull(task_ids='Create Compute', key='return_value') }}"
+              },
+              {
+                "task_id": "Delete Compute",
+                "type": "DeleteCompute",
+                "depends_on": [
+                  "Run Jobs"
+                ],
+                "airflow_connection_id": "<<airflow_connection_id>>",
+                "compute_type": "${compute_type}",
+                "cloud_type": "${cloud_type}",
+                "compute_id": "{{ task_instance.xcom_pull(task_ids='Create Compute', key='return_value') }}"
+              }
+            ],
+            "template_parameters": [
+              {
+                "key": "airflow_connection_id",
+                "value": "<<airflow_connection_id>>"
+              }
+            ]
+          },
+          "schema_id": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      },
+      {
+        "model": "FlowDeployment",
+        "pk": 3,
+        "data": {
+          "flow_deployment_id": 3,
+          "flow_id": 3,
+          "bh_env_id": 3,
+          "bh_airflow_id": null,
+          "flow_version_id": null,
+          "schema_id": null,
+          "cron_expression": null,
+          "last_deployed_at": null,
+          "tenant_id": 1,
+          "is_deleted": false,
+          "deleted_by": null
+        }
+      }
+    ]
+  }
+}
