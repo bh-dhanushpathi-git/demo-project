@@ -1,0 +1,3010 @@
+{
+  "created_at": "2026-04-29T11:30:13.169101Z",
+  "updated_at": "2026-04-29T11:30:13.169101Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 541,
+  "pipeline_name": "ig_1010",
+  "pipeline_key": "ig_1010",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "ig_1010",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [],
+    "connections": {
+      "landing_facility_file_connection_obj154": {
+        "name": "landing_facility_file_connection_obj154",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_facility_db_connection_obj154": {
+        "name": "bronze_facility_db_connection_obj154",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_icd_code_map_file_connection_obj155": {
+        "name": "landing_icd_code_map_file_connection_obj155",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_icd_code_map_db_connection_obj155": {
+        "name": "bronze_icd_code_map_db_connection_obj155",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_icd_to_hcc_crosswalk_file_connection_obj156": {
+        "name": "landing_icd_to_hcc_crosswalk_file_connection_obj156",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_icd_to_hcc_crosswalk_db_connection_obj156": {
+        "name": "bronze_icd_to_hcc_crosswalk_db_connection_obj156",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_loin_codes_file_connection_obj157": {
+        "name": "landing_loin_codes_file_connection_obj157",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_loin_codes_db_connection_obj157": {
+        "name": "bronze_loin_codes_db_connection_obj157",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_ndc_file_connection_obj158": {
+        "name": "landing_ndc_file_connection_obj158",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_ndc_db_connection_obj158": {
+        "name": "bronze_ndc_db_connection_obj158",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_npi_name_crosswalk_file_connection_obj159": {
+        "name": "landing_npi_name_crosswalk_file_connection_obj159",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_npi_name_crosswalk_db_connection_obj159": {
+        "name": "bronze_npi_name_crosswalk_db_connection_obj159",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_nucc_taxonomoy_file_connection_obj160": {
+        "name": "landing_nucc_taxonomoy_file_connection_obj160",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_nucc_taxonomoy_db_connection_obj160": {
+        "name": "bronze_nucc_taxonomoy_db_connection_obj160",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_place_of_service_codes_file_connection_obj161": {
+        "name": "landing_place_of_service_codes_file_connection_obj161",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_place_of_service_codes_db_connection_obj161": {
+        "name": "bronze_place_of_service_codes_db_connection_obj161",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_provider_taxonomy_file_connection_obj162": {
+        "name": "landing_provider_taxonomy_file_connection_obj162",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_provider_taxonomy_db_connection_obj162": {
+        "name": "bronze_provider_taxonomy_db_connection_obj162",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_provider_file_connection_obj163": {
+        "name": "landing_provider_file_connection_obj163",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_provider_db_connection_obj163": {
+        "name": "bronze_provider_db_connection_obj163",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_bill_type_codes_file_connection_obj153": {
+        "name": "landing_bill_type_codes_file_connection_obj153",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_bill_type_codes_db_connection_obj153": {
+        "name": "bronze_bill_type_codes_db_connection_obj153",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "main",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "landing_source_facility_obj154": {
+        "name": "landing_source_facility_obj154",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/Facility.csv",
+        "connection": {
+          "$ref": "#/connections/landing_facility_file_connection_obj154"
+        }
+      },
+      "landing_source_icd_code_map_obj155": {
+        "name": "landing_source_icd_code_map_obj155",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/ICD Code Map.csv",
+        "connection": {
+          "$ref": "#/connections/landing_icd_code_map_file_connection_obj155"
+        }
+      },
+      "landing_source_icd_to_hcc_crosswalk_obj156": {
+        "name": "landing_source_icd_to_hcc_crosswalk_obj156",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/ICD to HCC crosswalk.csv",
+        "connection": {
+          "$ref": "#/connections/landing_icd_to_hcc_crosswalk_file_connection_obj156"
+        }
+      },
+      "landing_source_loin_codes_obj157": {
+        "name": "landing_source_loin_codes_obj157",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/LOIN codes.csv",
+        "connection": {
+          "$ref": "#/connections/landing_loin_codes_file_connection_obj157"
+        }
+      },
+      "landing_source_ndc_obj158": {
+        "name": "landing_source_ndc_obj158",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/NDC.csv",
+        "connection": {
+          "$ref": "#/connections/landing_ndc_file_connection_obj158"
+        }
+      },
+      "landing_source_npi_name_crosswalk_obj159": {
+        "name": "landing_source_npi_name_crosswalk_obj159",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/NPI Name Crosswalk.csv",
+        "connection": {
+          "$ref": "#/connections/landing_npi_name_crosswalk_file_connection_obj159"
+        }
+      },
+      "landing_source_nucc_taxonomoy_obj160": {
+        "name": "landing_source_nucc_taxonomoy_obj160",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/NUCC_Taxonomoy.csv",
+        "connection": {
+          "$ref": "#/connections/landing_nucc_taxonomoy_file_connection_obj160"
+        }
+      },
+      "landing_source_place_of_service_codes_obj161": {
+        "name": "landing_source_place_of_service_codes_obj161",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/Place of service codes.csv",
+        "connection": {
+          "$ref": "#/connections/landing_place_of_service_codes_file_connection_obj161"
+        }
+      },
+      "landing_source_provider_taxonomy_obj162": {
+        "name": "landing_source_provider_taxonomy_obj162",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/Provider Taxonomy.csv",
+        "connection": {
+          "$ref": "#/connections/landing_provider_taxonomy_file_connection_obj162"
+        }
+      },
+      "landing_source_provider_obj163": {
+        "name": "landing_source_provider_obj163",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/Provider.csv",
+        "connection": {
+          "$ref": "#/connections/landing_provider_file_connection_obj163"
+        }
+      },
+      "landing_source_bill_type_codes_obj153": {
+        "name": "landing_source_bill_type_codes_obj153",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/Bill Type Codes.csv",
+        "connection": {
+          "$ref": "#/connections/landing_bill_type_codes_file_connection_obj153"
+        }
+      }
+    },
+    "targets": {
+      "bronze_target_facility_obj154": {
+        "name": "bronze_target_facility_obj154",
+        "target_type": "Relational",
+        "table_name": "facility",
+        "connection": {
+          "$ref": "#/connections/bronze_facility_db_connection_obj154"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_icd_code_map_obj155": {
+        "name": "bronze_target_icd_code_map_obj155",
+        "target_type": "Relational",
+        "table_name": "icd_code_map",
+        "connection": {
+          "$ref": "#/connections/bronze_icd_code_map_db_connection_obj155"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_icd_to_hcc_crosswalk_obj156": {
+        "name": "bronze_target_icd_to_hcc_crosswalk_obj156",
+        "target_type": "Relational",
+        "table_name": "icd_to_hcc_crosswalk",
+        "connection": {
+          "$ref": "#/connections/bronze_icd_to_hcc_crosswalk_db_connection_obj156"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_loin_codes_obj157": {
+        "name": "bronze_target_loin_codes_obj157",
+        "target_type": "Relational",
+        "table_name": "loin_codes",
+        "connection": {
+          "$ref": "#/connections/bronze_loin_codes_db_connection_obj157"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_ndc_obj158": {
+        "name": "bronze_target_ndc_obj158",
+        "target_type": "Relational",
+        "table_name": "ndc",
+        "connection": {
+          "$ref": "#/connections/bronze_ndc_db_connection_obj158"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_npi_name_crosswalk_obj159": {
+        "name": "bronze_target_npi_name_crosswalk_obj159",
+        "target_type": "Relational",
+        "table_name": "npi_name_crosswalk",
+        "connection": {
+          "$ref": "#/connections/bronze_npi_name_crosswalk_db_connection_obj159"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_nucc_taxonomoy_obj160": {
+        "name": "bronze_target_nucc_taxonomoy_obj160",
+        "target_type": "Relational",
+        "table_name": "nucc_taxonomoy",
+        "connection": {
+          "$ref": "#/connections/bronze_nucc_taxonomoy_db_connection_obj160"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_place_of_service_codes_obj161": {
+        "name": "bronze_target_place_of_service_codes_obj161",
+        "target_type": "Relational",
+        "table_name": "place_of_service_codes",
+        "connection": {
+          "$ref": "#/connections/bronze_place_of_service_codes_db_connection_obj161"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_provider_taxonomy_obj162": {
+        "name": "bronze_target_provider_taxonomy_obj162",
+        "target_type": "Relational",
+        "table_name": "provider_taxonomy",
+        "connection": {
+          "$ref": "#/connections/bronze_provider_taxonomy_db_connection_obj162"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_provider_obj163": {
+        "name": "bronze_target_provider_obj163",
+        "target_type": "Relational",
+        "table_name": "provider",
+        "connection": {
+          "$ref": "#/connections/bronze_provider_db_connection_obj163"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      },
+      "bronze_target_bill_type_codes_obj153": {
+        "name": "bronze_target_bill_type_codes_obj153",
+        "target_type": "Relational",
+        "table_name": "bill_type_codes",
+        "connection": {
+          "$ref": "#/connections/bronze_bill_type_codes_db_connection_obj153"
+        },
+        "load_mode": "append",
+        "schema": "public"
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_facility_obj154",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_facility_obj154"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "ID",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Entity_Type",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Prctc_Org_Name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Creds",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Prefix",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_FName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_MName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_LName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Creds",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Prefix",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_FName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_MName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_LName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Telephone",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Address1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Address2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Postal_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Country_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Telephone",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Fax",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Address1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Address2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_City",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_State",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Postal_Code",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Country_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Telephone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Fax",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_3",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_4",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_5",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_6",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_7",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_8",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_9",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_10",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_11",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_12",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_13",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_14",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_15",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Sole_Proprietor",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Organization_Subpart",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Parent_Org_LBN",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Parent_Org_TIN",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Emp_Idtfction_Number",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Certfctn_Date",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "NPI_Deactivation_Reason",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "NPI_Deactivation_Date",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Replacement_NPI",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "NPI_Reactivation_Date",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Enumeration_Date",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "Last_Update_Date",
+            "type": "timestamp",
+            "nullable": false
+          },
+          {
+            "name": "ZIP",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_ZIP",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Taxonomy_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Provider_Clssfctn_Speclization",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier3",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier4",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "npi",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj154",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_facility_obj154"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'facility'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj154",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj154"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_facility",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_facility_obj154",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj154"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_facility_obj154"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_icd_code_map_obj155",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_icd_code_map_obj155"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "ICD-10-CM Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ICD-10-CM Code Definition",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Beta Version CCS Category",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Beta Version CCS Category Description",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR1 Label",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR2 Label",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR3",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR3 Label",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR4",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR4 Label",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR5",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR5 Label",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCIR",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CC_Tracking_Flag",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Default CCSR Category IP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Default CCSR Category Description IP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Default CCSR Category OP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Default CCSR Category Description OP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR6",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CCSR6 Label",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj155",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_icd_code_map_obj155"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'icd_code_map'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj155",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj155"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_icd_code_map",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_icd_code_map_obj155",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj155"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_icd_code_map_obj155"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_icd_to_hcc_crosswalk_obj156",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_icd_to_hcc_crosswalk_obj156"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "Diagnosis_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Description",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CMS_HCC_Model_Category_V28",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "File_Version",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj156",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_icd_to_hcc_crosswalk_obj156"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'icd_to_hcc_crosswalk'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj156",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj156"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_icd_to_hcc_crosswalk",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_icd_to_hcc_crosswalk_obj156",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj156"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_icd_to_hcc_crosswalk_obj156"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_loin_codes_obj157",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_loin_codes_obj157"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "LOINC_NUM",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "COMPONENT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PROPERTY",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TIME_ASPCT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "SYSTEM",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "SCALE_TYP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "METHOD_TYP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CLASS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "CLASSTYPE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "LONG_COMMON_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "SHORTNAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "STATUS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "VersionFirstReleased",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "VersionLastChanged",
+            "type": "decimal(38,10)",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj157",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_loin_codes_obj157"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'loin_codes'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj157",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj157"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_loin_codes",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_loin_codes_obj157",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj157"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_loin_codes_obj157"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_ndc_obj158",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_ndc_obj158"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "ID",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "NDC_ID",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "Generic_flag",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "formulary_flag",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "rxcui",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "tty",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ingredient",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Brand_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "scdg",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "scdc",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Ingredient_rxcui",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Therapy_Class_id",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Last_Updated",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj158",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_ndc_obj158"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'ndc'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj158",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj158"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_ndc",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_ndc_obj158",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj158"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_ndc_obj158"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_npi_name_crosswalk_obj159",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_npi_name_crosswalk_obj159"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "NPI",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "FullName",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj159",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_npi_name_crosswalk_obj159"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'npi_name_crosswalk'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj159",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj159"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_npi_name_crosswalk",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_npi_name_crosswalk_obj159",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj159"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_npi_name_crosswalk_obj159"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_nucc_taxonomoy_obj160",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_nucc_taxonomoy_obj160"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Grouping",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Classification",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Specialization",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Definition",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Notes",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Display_Name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Section",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj160",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_nucc_taxonomoy_obj160"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'nucc_taxonomoy'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj160",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj160"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_nucc_taxonomoy",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_nucc_taxonomoy_obj160",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj160"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_nucc_taxonomoy_obj160"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_place_of_service_codes_obj161",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_place_of_service_codes_obj161"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "ID",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Place_of_Service_Code",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Place_of_Service_Name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Place_of_Service_Description",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Type",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj161",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_place_of_service_codes_obj161"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'place_of_service_codes'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj161",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj161"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_place_of_service_codes",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_place_of_service_codes_obj161",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj161"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_place_of_service_codes_obj161"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_provider_taxonomy_obj162",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_provider_taxonomy_obj162"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "NPI",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Taxonomy_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Primary",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Classification",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Specialization",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj162",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_provider_taxonomy_obj162"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'provider_taxonomy'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj162",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj162"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_provider_taxonomy",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_provider_taxonomy_obj162",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj162"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_provider_taxonomy_obj162"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_provider_obj163",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_provider_obj163"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "ID",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "NPI",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Entity_Type",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prctc_Org_Name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Creds",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Prefix",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_FName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_MName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_LName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Title",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Creds",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Prefix",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_FName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_MName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_LName",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Authrzd_Person_Telephone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Address1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Address2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "City",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "State",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Postal_Code",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Country_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Telephone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Fax",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Address1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Address2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_City",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_State",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Postal_Code",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Country_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Telephone",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_Fax",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_3",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_4",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_5",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_6",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_7",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_8",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_9",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_10",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_11",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_12",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_13",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_14",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HlthcrPrvdr_Txnmy_Cd_15",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Sole_Proprietor",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Organization_Subpart",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Parent_Org_LBN",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Parent_Org_TIN",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Emp_Idtfction_Number",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Certfctn_Date",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "NPI_Deactivation_Reason",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "NPI_Deactivation_Date",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Replacement_NPI",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "NPI_Reactivation_Date",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Enumeration_Date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "Last_Update_Date",
+            "type": "date",
+            "nullable": false
+          },
+          {
+            "name": "ZIP",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "Mailing_ZIP",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "YYYYMM",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "ZIP_STD",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "CITY_STD",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "STATE_STD",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "COUNTY_STD",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "POPULATION_CENTER_LATITUDE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "POPULATION_CENTER_LONGITUDE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Taxonomy_Code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Provider_Clssfctn_Speclization",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier1",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier2",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier3",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "Prvdr_Clsfctn_Hier4",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj163",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_provider_obj163"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'provider'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj163",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj163"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_provider",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_provider_obj163",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj163"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_provider_obj163"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_bill_type_codes_obj153",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_bill_type_codes_obj153"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "Bill_Type_Code",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "Typeofclaim",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj153",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_bill_type_codes_obj153"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'bill_type_codes'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj153",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj153"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_bill_type_codes",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_bill_type_codes_obj153",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj153"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_bill_type_codes_obj153"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "ig_1010",
+      "business_date": "2026-04-29",
+      "delivery_id": "ig_1010_2026-04-29",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_facility_obj154",
+          "add_lineage_metadata_obj154",
+          "schema_drift_guard_obj154",
+          "bronze_write_facility_obj154",
+          "landing_read_icd_code_map_obj155",
+          "add_lineage_metadata_obj155",
+          "schema_drift_guard_obj155",
+          "bronze_write_icd_code_map_obj155",
+          "landing_read_icd_to_hcc_crosswalk_obj156",
+          "add_lineage_metadata_obj156",
+          "schema_drift_guard_obj156",
+          "bronze_write_icd_to_hcc_crosswalk_obj156",
+          "landing_read_loin_codes_obj157",
+          "add_lineage_metadata_obj157",
+          "schema_drift_guard_obj157",
+          "bronze_write_loin_codes_obj157",
+          "landing_read_ndc_obj158",
+          "add_lineage_metadata_obj158",
+          "schema_drift_guard_obj158",
+          "bronze_write_ndc_obj158",
+          "landing_read_npi_name_crosswalk_obj159",
+          "add_lineage_metadata_obj159",
+          "schema_drift_guard_obj159",
+          "bronze_write_npi_name_crosswalk_obj159",
+          "landing_read_nucc_taxonomoy_obj160",
+          "add_lineage_metadata_obj160",
+          "schema_drift_guard_obj160",
+          "bronze_write_nucc_taxonomoy_obj160",
+          "landing_read_place_of_service_codes_obj161",
+          "add_lineage_metadata_obj161",
+          "schema_drift_guard_obj161",
+          "bronze_write_place_of_service_codes_obj161",
+          "landing_read_provider_taxonomy_obj162",
+          "add_lineage_metadata_obj162",
+          "schema_drift_guard_obj162",
+          "bronze_write_provider_taxonomy_obj162",
+          "landing_read_provider_obj163",
+          "add_lineage_metadata_obj163",
+          "schema_drift_guard_obj163",
+          "bronze_write_provider_obj163",
+          "landing_read_bill_type_codes_obj153",
+          "add_lineage_metadata_obj153",
+          "schema_drift_guard_obj153",
+          "bronze_write_bill_type_codes_obj153"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 152,
+      "expected_group_members": 11,
+      "group_run_id": "ig_1010_20260429T113011Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
