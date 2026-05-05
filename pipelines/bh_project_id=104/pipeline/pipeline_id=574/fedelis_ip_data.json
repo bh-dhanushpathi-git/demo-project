@@ -1,0 +1,698 @@
+{
+  "created_at": "2026-05-05T12:45:43.373253Z",
+  "updated_at": "2026-05-05T12:45:43.373253Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 574,
+  "pipeline_name": "fedelis_ip_data",
+  "pipeline_key": "fedelis_ip_data",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "fedelis_ip_data",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [],
+    "connections": {
+      "landing_ip_downstate_file_connection_obj200": {
+        "name": "landing_ip_downstate_file_connection_obj200",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_ip_downstate_db_connection_obj200": {
+        "name": "bronze_ip_downstate_db_connection_obj200",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_adt",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "landing_ip_upstate_file_connection_obj201": {
+        "name": "landing_ip_upstate_file_connection_obj201",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_ip_upstate_db_connection_obj201": {
+        "name": "bronze_ip_upstate_db_connection_obj201",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_adt",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "landing_source_ip_downstate_obj200": {
+        "name": "landing_source_ip_downstate_obj200",
+        "source_type": "File",
+        "file_name": "bhargs/ADT/safeharbor_VBP0211_Inpatient_Census_PG_report_CINQDOWNSTATE_20260428.xlsx",
+        "connection": {
+          "$ref": "#/connections/landing_ip_downstate_file_connection_obj200"
+        }
+      },
+      "landing_source_ip_upstate_obj201": {
+        "name": "landing_source_ip_upstate_obj201",
+        "source_type": "File",
+        "file_name": "bhargs/ADT/safeharbor_VBP0211_Inpatient_Census_PG_report_CINQUPSTATE_20260429.xlsx",
+        "connection": {
+          "$ref": "#/connections/landing_ip_upstate_file_connection_obj201"
+        }
+      }
+    },
+    "targets": {
+      "bronze_target_ip_downstate_obj200": {
+        "name": "bronze_target_ip_downstate_obj200",
+        "target_type": "Relational",
+        "table_name": "ip_downstate",
+        "connection": {
+          "$ref": "#/connections/bronze_ip_downstate_db_connection_obj200"
+        },
+        "load_mode": "append",
+        "schema": "bronze_adt"
+      },
+      "bronze_target_ip_upstate_obj201": {
+        "name": "bronze_target_ip_upstate_obj201",
+        "target_type": "Relational",
+        "table_name": "ip_upstate",
+        "connection": {
+          "$ref": "#/connections/bronze_ip_upstate_db_connection_obj201"
+        },
+        "load_mode": "append",
+        "schema": "bronze_adt"
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_ip_downstate_obj200",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_ip_downstate_obj200"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "Sheet1",
+          "sheet_name": "Sheet1",
+          "useHeader": true,
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10,
+          "mode": "PERMISSIVE",
+          "columnNameOfCorruptRecord": "_corrupt_record"
+        },
+        "schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "AGE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj200",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_ip_downstate_obj200"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'ip_downstate'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj200",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj200"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_ip_downstate",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_ip_downstate_obj200",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj200"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_ip_downstate_obj200"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_ip_upstate_obj201",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_ip_upstate_obj201"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "Sheet1",
+          "sheet_name": "Sheet1",
+          "useHeader": true,
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10,
+          "mode": "PERMISSIVE",
+          "columnNameOfCorruptRecord": "_corrupt_record"
+        },
+        "schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "AGE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj201",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_ip_upstate_obj201"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'ip_upstate'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj201",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj201"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_ip_upstate",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_ip_upstate_obj201",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj201"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_ip_upstate_obj201"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "fedelis_ip_data",
+      "business_date": "2026-05-05",
+      "delivery_id": "fedelis_ip_data_2026-05-05",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_ip_downstate_obj200",
+          "add_lineage_metadata_obj200",
+          "schema_drift_guard_obj200",
+          "bronze_write_ip_downstate_obj200",
+          "landing_read_ip_upstate_obj201",
+          "add_lineage_metadata_obj201",
+          "schema_drift_guard_obj201",
+          "bronze_write_ip_upstate_obj201"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 189,
+      "expected_group_members": 2,
+      "group_run_id": "fedelis_ip_data_20260505T124541Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
