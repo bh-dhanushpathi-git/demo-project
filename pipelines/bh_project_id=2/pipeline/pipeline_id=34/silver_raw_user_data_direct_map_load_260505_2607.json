@@ -1,0 +1,371 @@
+{
+  "created_at": "2026-05-05T13:50:18.883790Z",
+  "updated_at": "2026-05-05T13:52:06.073578Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 1,
+  "pipeline_id": 34,
+  "pipeline_name": "silver_raw_user_data_direct_map_load_260505_2607",
+  "pipeline_key": "silver_raw_user_data_direct_map_load_260505_2607",
+  "bh_project_id": 2,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 4,
+    "data_domain_name": "Mock Data",
+    "source_count": 1,
+    "target_count": 1
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "local_dhanu_test",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_user_data_direct_map_load_260505_2607",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "local_dbt_dbt_cinqdev": {
+        "connection_config_id": 1,
+        "name": "local_dbt_dbt_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "public",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-localdbtdbt"
+      },
+      "local_dbt_dbt_dev": {
+        "connection_config_id": 1,
+        "name": "local_dbt_dbt_dev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "dev",
+        "schema": "mock_data",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-localdbtdbt"
+      }
+    },
+    "sources": {
+      "user_data_xrq1u": {
+        "data_src_id": 116,
+        "name": "user_data_xrq1u",
+        "source_type": "Relational",
+        "table_name": "user_data_xrq1u",
+        "connection": {
+          "$ref": "#/connections/local_dbt_dbt_cinqdev"
+        },
+        "fields": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "age",
+          "gender",
+          "ingest_timestamp",
+          "ingest_date"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "age",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ingest_timestamp",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_date",
+            "type": "date",
+            "nullable": true
+          }
+        ],
+        "db_schema": "public"
+      }
+    },
+    "targets": {
+      "user_data": {
+        "data_src_id": 114,
+        "name": "user_data",
+        "target_type": "Relational",
+        "table_name": "user_data",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/local_dbt_dbt_dev"
+        },
+        "schema": "mock_data",
+        "merge_keys": [
+          "id"
+        ],
+        "process_deletes": false,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "first_name",
+            "last_name",
+            "email",
+            "age",
+            "gender",
+            "batch_id",
+            "record_hash",
+            "is_deleted",
+            "created_by",
+            "created_at",
+            "updated_by",
+            "updated_at"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      },
+      "quarantine_user_data_xrq1u": {
+        "data_src_id": 114,
+        "name": "quarantine_user_data_xrq1u",
+        "target_type": "Relational",
+        "table_name": "quarantine_user_data_xrq1u",
+        "load_mode": "overwrite",
+        "connection": {
+          "$ref": "#/connections/local_dbt_dbt_dev"
+        },
+        "schema": "mock_data"
+      }
+    },
+    "transformations": [
+      {
+        "name": "user_data_xrq1u",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/user_data_xrq1u"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "first_name": "first_name_src_1",
+          "last_name": "last_name_src_1",
+          "email": "email_src_1",
+          "age": "age_src_1",
+          "gender": "gender_src_1",
+          "ingest_timestamp": "ingest_timestamp_src_1",
+          "ingest_date": "ingest_date_src_1"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "id",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "first_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "last_name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "email",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "age",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "gender",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ingest_timestamp",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_date",
+            "type": "date",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "dq_checks_user_data_xrq1u",
+        "transformation": "DataQuality",
+        "dependent_on": [
+          "user_data_xrq1u"
+        ],
+        "dq_rules": [
+          {
+            "rule_name": "NOTNULL_id",
+            "column": "id_src_1",
+            "column_type": "string",
+            "rule_type": "notnull",
+            "action": "error"
+          }
+        ]
+      },
+      {
+        "name": "MapUserData",
+        "transformation": "Expression",
+        "dependent_on": [
+          "dq_checks_user_data_xrq1u"
+        ],
+        "derived_fields": [
+          {
+            "name": "age",
+            "expression": "CAST(age_src_1 AS INTEGER)"
+          },
+          {
+            "name": "batch_id",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "created_by",
+            "expression": "'mock_data_pipeline'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'mock_data_pipeline'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          }
+        ],
+        "rename_columns": {
+          "id_src_1": "id",
+          "first_name_src_1": "first_name",
+          "last_name_src_1": "last_name",
+          "email_src_1": "email",
+          "gender_src_1": "gender"
+        },
+        "select_columns": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "age",
+          "gender",
+          "batch_id",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at"
+        ]
+      },
+      {
+        "name": "quarantine_user_data_xrq1u",
+        "transformation": "Writer",
+        "dependent_on": [
+          "dq_checks_user_data_xrq1u"
+        ],
+        "target": {
+          "$ref": "#/targets/quarantine_user_data_xrq1u"
+        },
+        "write_options": {
+          "mode": "overwrite",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        },
+        "input_selection": {
+          "dq_checks_user_data_xrq1u": [
+            "dq_checks_user_data_xrq1u_err_recs"
+          ]
+        }
+      },
+      {
+        "name": "user_data_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "quarantine_user_data_xrq1u"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "first_name",
+          "last_name",
+          "email",
+          "age",
+          "gender",
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at"
+        ],
+        "derived_fields": [
+          {
+            "name": "record_hash",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "is_deleted",
+            "expression": "CAST(NULL AS BOOLEAN)"
+          }
+        ]
+      },
+      {
+        "name": "user_data",
+        "transformation": "Writer",
+        "dependent_on": [
+          "user_data_final"
+        ],
+        "target": {
+          "$ref": "#/targets/user_data"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
