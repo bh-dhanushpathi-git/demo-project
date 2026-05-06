@@ -1,0 +1,305 @@
+{
+  "created_at": "2026-05-06T06:02:41.619691Z",
+  "updated_at": "2026-05-06T06:02:41.619691Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 579,
+  "pipeline_name": "ref_d0284_palmr_190",
+  "pipeline_key": "ref_d0284_palmr_190",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "ref_d0284_palmr_190",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [],
+    "connections": {
+      "landing_ref_d0284_palmr_file_connection": {
+        "name": "landing_ref_d0284_palmr_file_connection",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_ref_d0284_palmr_db_connection": {
+        "name": "bronze_ref_d0284_palmr_db_connection",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_referance_data",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "landing_source_ref_d0284_palmr": {
+        "name": "landing_source_ref_d0284_palmr",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/D0284.PALMR.D260123.T1252420.csv",
+        "connection": {
+          "$ref": "#/connections/landing_ref_d0284_palmr_file_connection"
+        }
+      }
+    },
+    "targets": {
+      "bronze_target_ref_d0284_palmr": {
+        "name": "bronze_target_ref_d0284_palmr",
+        "target_type": "Relational",
+        "table_name": "ref_d0284_palmr",
+        "connection": {
+          "$ref": "#/connections/bronze_ref_d0284_palmr_db_connection"
+        },
+        "load_mode": "append",
+        "schema": "bronze_referance_data"
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_ref_d0284_palmr",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_ref_d0284_palmr"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "ACO_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MBI_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ALGN_TYPE_CLM",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ALGN_TYPE_VA",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "PRVDR_TIN (CLM OR VA)",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "PRVDR_NPI (CLM OR VA)",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "FAC_PRVDR_OSCAR_NUM",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "QEM_ALLOWED_PRIMARY_AY1",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "QEM_ALLOWED_NONPRIMARY_AY1",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "QEM_ALLOWED_OTHER_AY1",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "QEM_ALLOWED_PRIMARY_AY2",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "QEM_ALLOWED_NONPRIMARY_AY2",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "QEM_ALLOWED_OTHER_AY2",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_ref_d0284_palmr"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'ref_d0284_palmr'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_ref_d0284_palmr",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_ref_d0284_palmr",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_ref_d0284_palmr"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "ref_d0284_palmr",
+      "business_date": "2026-05-06",
+      "delivery_id": "ref_d0284_palmr_2026-05-06",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_ref_d0284_palmr",
+          "add_lineage_metadata",
+          "schema_drift_guard",
+          "bronze_write_ref_d0284_palmr"
+        ]
+      },
+      "error_threshold_pct": 50.0
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
