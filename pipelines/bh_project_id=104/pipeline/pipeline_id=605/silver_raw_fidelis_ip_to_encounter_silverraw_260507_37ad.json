@@ -1,0 +1,1620 @@
+{
+  "created_at": "2026-05-07T11:09:50.987203Z",
+  "updated_at": "2026-05-07T11:14:50.122744Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 605,
+  "pipeline_name": "silver_raw_fidelis_ip_to_encounter_silverraw_260507_37ad",
+  "pipeline_key": "silver_raw_fidelis_ip_to_encounter_silverraw_260507_37ad",
+  "bh_project_id": 104,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 271,
+    "data_domain_name": "ADT (Admission, Discharge, Transfer)",
+    "source_count": 2,
+    "target_count": 3
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_fidelis_ip_to_encounter_silverraw_260507_37ad",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "databricks_d__db_env_cinqdev": {
+        "connection_config_id": 140,
+        "name": "databricks_d__db_env_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_adt",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "fedelis_ip_downstate_3": {
+        "data_src_id": 880,
+        "name": "fedelis_ip_downstate_3",
+        "source_type": "Relational",
+        "table_name": "fedelis_ip_downstate_3",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "fields": [
+          "VBP_ID",
+          "PROVIDER_ID",
+          "GROUP",
+          "PLAN_ID",
+          "AUTH_ID",
+          "MEMBER_NAME",
+          "DATE_OF_BIRTH",
+          "MEMBER_PCP",
+          "PCP_PHONE",
+          "MBR_PHONE",
+          "AGE",
+          "MEMBER_COUNTY",
+          "MEMBER_ZIP_CODE",
+          "ACTUAL_ADMIT_DATE",
+          "FACILITY_NAME",
+          "FACILITY_COUNTY",
+          "CONFINE_STATUS",
+          "AUTH_LOS",
+          "LOS_TO_DATE",
+          "MEMBER_ID",
+          "MBR_ELIG",
+          "TREATMENT_TYPE",
+          "TYPE_OF_CARE",
+          "DESCRIPTION",
+          "SUB_GROUP",
+          "PREV_INPT_ADMT",
+          "HEALTH_HOME_ID",
+          "HEALTH_HOME_NAME",
+          "HEALTH_HOME_STATUS",
+          "MEMBER_LINE_OF_BUSINESS",
+          "DIABETIC_INDICATOR",
+          "HIGH_ALERT_30D_READMIT",
+          "ingest_timestamp",
+          "ingest_date"
+        ],
+        "schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "AGE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ingest_timestamp",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_date",
+            "type": "date",
+            "nullable": true
+          }
+        ],
+        "db_schema": "bronze_adt"
+      }
+    },
+    "targets": {
+      "encounter": {
+        "data_src_id": 865,
+        "name": "encounter",
+        "target_type": "Relational",
+        "table_name": "encounter",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "schema": "silverraw_adt",
+        "merge_keys": [
+          "SourceSystemId",
+          "PatientId",
+          "VisitNumber",
+          "SourceMessageId",
+          "EventType",
+          "EventTypeDesc",
+          "PatientClass",
+          "VisitTypeDesc",
+          "MessageDate",
+          "ReceivedDatetime",
+          "LastName",
+          "FirstName",
+          "MiddleName",
+          "DateOfBirth",
+          "Gender",
+          "AddressLine1",
+          "AddressLine2",
+          "City",
+          "State",
+          "ZipCode",
+          "DeathIndicator",
+          "MedicaidNumber",
+          "MemberHICN",
+          "AttendingNPI",
+          "AttendingLastName",
+          "AttendingFirstName",
+          "AdmittingNPI",
+          "AdmittingLastName",
+          "AdmittingFirstName",
+          "PCPName",
+          "PCPNPI",
+          "PCPGroupName",
+          "PCPGroupTIN",
+          "PCPPhone",
+          "IPAName",
+          "Region",
+          "FacilityName",
+          "FacilityNPI",
+          "FacilityMRN",
+          "FacilityID",
+          "FacilityCounty",
+          "AdmitType",
+          "AdmitSource",
+          "AdmissionDate",
+          "DischargeDate",
+          "DischargeDispositionCode",
+          "DischargeDispositionDesc",
+          "AdmissionReason",
+          "ChiefComplaint",
+          "DiagnosisList",
+          "Payer",
+          "LOB",
+          "InsuranceID",
+          "AuthID",
+          "AuthStatus",
+          "AuthLOS",
+          "RiskStratification",
+          "TOCCompleted",
+          "TransitionID",
+          "VbpID",
+          "HealthHomeID",
+          "HealthHomeName",
+          "HighAlert30dReadmit",
+          "DiabeticIndicator",
+          "MortalityRisk",
+          "OahDual",
+          "MarketName",
+          "PayrEntprs",
+          "ConfinementStatus",
+          "PlanID",
+          "SubGroup",
+          "FileName",
+          "FileDate",
+          "IsDeleted",
+          "RecordHash",
+          "SourceSystemIdType",
+          "FeedName",
+          "SourceSystem",
+          "CreatedBy",
+          "CreatedAt",
+          "UpdatedBy",
+          "UpdatedAt",
+          "BatchId"
+        ],
+        "process_deletes": false
+      },
+      "encounter_cinq_ext": {
+        "data_src_id": 864,
+        "name": "encounter_cinq_ext",
+        "target_type": "Relational",
+        "table_name": "encounter_cinq_ext",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "schema": "silverraw_adt",
+        "merge_keys": [
+          "EncounterGroupId",
+          "PHNAssigned",
+          "BusinessHours",
+          "RiskCatCRG",
+          "RiskCatHCC",
+          "CaseAssignmentRiskType",
+          "PregnancyFlag",
+          "DeliveryFlag",
+          "DischargeDateExpected",
+          "DischargeDateExpectedEntryId",
+          "DischargeDateExpectedLastEdit",
+          "DischargeDateActual",
+          "MdVisitScheduled",
+          "MdVisitScheduledDate",
+          "MdVisitDate",
+          "TransitionOfCare",
+          "AuthID",
+          "AuthStatus",
+          "AuthLOS",
+          "IsDeleted",
+          "RecordHash",
+          "SourceSystemIdType",
+          "FeedName",
+          "SourceSystem",
+          "CreatedBy",
+          "CreatedAt",
+          "UpdatedBy",
+          "UpdatedAt",
+          "BatchId"
+        ],
+        "process_deletes": false
+      }
+    },
+    "transformations": [
+      {
+        "name": "fedelis_ip_downstate_3",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/fedelis_ip_downstate_3"
+        },
+        "rename_columns": {
+          "VBP_ID": "VBP_ID_src_1",
+          "PROVIDER_ID": "PROVIDER_ID_src_1",
+          "GROUP": "GROUP_src_1",
+          "PLAN_ID": "PLAN_ID_src_1",
+          "AUTH_ID": "AUTH_ID_src_1",
+          "MEMBER_NAME": "MEMBER_NAME_src_1",
+          "DATE_OF_BIRTH": "DATE_OF_BIRTH_src_1",
+          "MEMBER_PCP": "MEMBER_PCP_src_1",
+          "PCP_PHONE": "PCP_PHONE_src_1",
+          "MBR_PHONE": "MBR_PHONE_src_1",
+          "AGE": "AGE_src_1",
+          "MEMBER_COUNTY": "MEMBER_COUNTY_src_1",
+          "MEMBER_ZIP_CODE": "MEMBER_ZIP_CODE_src_1",
+          "ACTUAL_ADMIT_DATE": "ACTUAL_ADMIT_DATE_src_1",
+          "FACILITY_NAME": "FACILITY_NAME_src_1",
+          "FACILITY_COUNTY": "FACILITY_COUNTY_src_1",
+          "CONFINE_STATUS": "CONFINE_STATUS_src_1",
+          "AUTH_LOS": "AUTH_LOS_src_1",
+          "LOS_TO_DATE": "LOS_TO_DATE_src_1",
+          "MEMBER_ID": "MEMBER_ID_src_1",
+          "MBR_ELIG": "MBR_ELIG_src_1",
+          "TREATMENT_TYPE": "TREATMENT_TYPE_src_1",
+          "TYPE_OF_CARE": "TYPE_OF_CARE_src_1",
+          "DESCRIPTION": "DESCRIPTION_src_1",
+          "SUB_GROUP": "SUB_GROUP_src_1",
+          "PREV_INPT_ADMT": "PREV_INPT_ADMT_src_1",
+          "HEALTH_HOME_ID": "HEALTH_HOME_ID_src_1",
+          "HEALTH_HOME_NAME": "HEALTH_HOME_NAME_src_1",
+          "HEALTH_HOME_STATUS": "HEALTH_HOME_STATUS_src_1",
+          "MEMBER_LINE_OF_BUSINESS": "MEMBER_LINE_OF_BUSINESS_src_1",
+          "DIABETIC_INDICATOR": "DIABETIC_INDICATOR_src_1",
+          "HIGH_ALERT_30D_READMIT": "HIGH_ALERT_30D_READMIT_src_1",
+          "ingest_timestamp": "ingest_timestamp_src_1",
+          "ingest_date": "ingest_date_src_1"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "VBP_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PROVIDER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PLAN_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DATE_OF_BIRTH",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_PCP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PCP_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MBR_PHONE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "AGE",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_ZIP_CODE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "ACTUAL_ADMIT_DATE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "FACILITY_COUNTY",
+            "type": "double",
+            "nullable": true
+          },
+          {
+            "name": "CONFINE_STATUS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "AUTH_LOS",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "LOS_TO_DATE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MBR_ELIG",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TREATMENT_TYPE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "TYPE_OF_CARE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DESCRIPTION",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SUB_GROUP",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PREV_INPT_ADMT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HEALTH_HOME_ID",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_NAME",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "HEALTH_HOME_STATUS",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "MEMBER_LINE_OF_BUSINESS",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DIABETIC_INDICATOR",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "HIGH_ALERT_30D_READMIT",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "ingest_timestamp",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_date",
+            "type": "date",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "EncounterTransform",
+        "transformation": "Expression",
+        "dependent_on": [
+          "fedelis_ip_downstate_3"
+        ],
+        "derived_fields": [
+          {
+            "name": "SourceSystemId",
+            "expression": "MEMBER_ID_src_1"
+          },
+          {
+            "name": "PatientId",
+            "expression": "MEMBER_ID_src_1"
+          },
+          {
+            "name": "VisitNumber",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "SourceMessageId",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "EventType",
+            "expression": "CONFINE_STATUS_src_1"
+          },
+          {
+            "name": "EventTypeDesc",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PatientClass",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "VisitTypeDesc",
+            "expression": "TYPE_OF_CARE_src_1"
+          },
+          {
+            "name": "MessageDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "ReceivedDatetime",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "LastName",
+            "expression": "trim(split(MEMBER_NAME_src_1, ',')[0])"
+          },
+          {
+            "name": "FirstName",
+            "expression": "trim(split(MEMBER_NAME_src_1, ',')[1])"
+          },
+          {
+            "name": "MiddleName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DateOfBirth",
+            "expression": "CAST(DATE_OF_BIRTH_src_1 AS TIMESTAMP)"
+          },
+          {
+            "name": "Gender",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AddressLine1",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AddressLine2",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "City",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "State",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "ZipCode",
+            "expression": "regexp_replace(CAST(MEMBER_ZIP_CODE_src_1 AS STRING), '-.*$', '')"
+          },
+          {
+            "name": "DeathIndicator",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MedicaidNumber",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MemberHICN",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AttendingNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AttendingLastName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AttendingFirstName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmittingNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmittingLastName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmittingFirstName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPName",
+            "expression": "MEMBER_PCP_src_1"
+          },
+          {
+            "name": "PCPNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPGroupName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPGroupTIN",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPPhone",
+            "expression": "CAST(PCP_PHONE_src_1 AS STRING)"
+          },
+          {
+            "name": "IPAName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Region",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityName",
+            "expression": "FACILITY_NAME_src_1"
+          },
+          {
+            "name": "FacilityNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityMRN",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityID",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityCounty",
+            "expression": "CAST(FACILITY_COUNTY_src_1 AS STRING)"
+          },
+          {
+            "name": "AdmitType",
+            "expression": "TYPE_OF_CARE_src_1"
+          },
+          {
+            "name": "AdmitSource",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmissionDate",
+            "expression": "CAST(ACTUAL_ADMIT_DATE_src_1 AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDispositionCode",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DischargeDispositionDesc",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmissionReason",
+            "expression": "DESCRIPTION_src_1"
+          },
+          {
+            "name": "ChiefComplaint",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DiagnosisList",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Payer",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "LOB",
+            "expression": "MEMBER_LINE_OF_BUSINESS_src_1"
+          },
+          {
+            "name": "InsuranceID",
+            "expression": "MEMBER_ID_src_1"
+          },
+          {
+            "name": "AuthID",
+            "expression": "AUTH_ID_src_1"
+          },
+          {
+            "name": "AuthStatus",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AuthLOS",
+            "expression": "CAST(AUTH_LOS_src_1 AS STRING)"
+          },
+          {
+            "name": "RiskStratification",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "TOCCompleted",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "TransitionID",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "VbpID",
+            "expression": "VBP_ID_src_1"
+          },
+          {
+            "name": "HealthHomeID",
+            "expression": "HEALTH_HOME_ID_src_1"
+          },
+          {
+            "name": "HealthHomeName",
+            "expression": "HEALTH_HOME_NAME_src_1"
+          },
+          {
+            "name": "HighAlert30dReadmit",
+            "expression": "HIGH_ALERT_30D_READMIT_src_1"
+          },
+          {
+            "name": "DiabeticIndicator",
+            "expression": "DIABETIC_INDICATOR_src_1"
+          },
+          {
+            "name": "MortalityRisk",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "OahDual",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MarketName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PayrEntprs",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "ConfinementStatus",
+            "expression": "CONFINE_STATUS_src_1"
+          },
+          {
+            "name": "PlanID",
+            "expression": "PLAN_ID_src_1"
+          },
+          {
+            "name": "SubGroup",
+            "expression": "SUB_GROUP_src_1"
+          },
+          {
+            "name": "FileName",
+            "expression": "element_at(split(input_file_name(), '/'), -1)"
+          },
+          {
+            "name": "FileDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "IsDeleted",
+            "expression": "FALSE"
+          },
+          {
+            "name": "RecordHash",
+            "expression": "md5(concat_ws('|', MEMBER_ID_src_1, CAST(ACTUAL_ADMIT_DATE_src_1 AS STRING), FACILITY_NAME_src_1, CONFINE_STATUS_src_1, AUTH_ID_src_1, PLAN_ID_src_1, SUB_GROUP_src_1))"
+          },
+          {
+            "name": "SourceSystemIdType",
+            "expression": "'Fidelis_MemberID'"
+          },
+          {
+            "name": "FeedName",
+            "expression": "'Fidelis_UM_Daily'"
+          },
+          {
+            "name": "SourceSystem",
+            "expression": "'Fidelis_UM'"
+          },
+          {
+            "name": "CreatedBy",
+            "expression": "'ADT_Fidelis_SilverRaw'"
+          },
+          {
+            "name": "CreatedAt",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "UpdatedBy",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "UpdatedAt",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "BatchId",
+            "expression": "CAST(NULL AS INT)"
+          }
+        ],
+        "select_columns": [
+          "SourceSystemId",
+          "PatientId",
+          "VisitNumber",
+          "SourceMessageId",
+          "EventType",
+          "EventTypeDesc",
+          "PatientClass",
+          "VisitTypeDesc",
+          "MessageDate",
+          "ReceivedDatetime",
+          "LastName",
+          "FirstName",
+          "MiddleName",
+          "DateOfBirth",
+          "Gender",
+          "AddressLine1",
+          "AddressLine2",
+          "City",
+          "State",
+          "ZipCode",
+          "DeathIndicator",
+          "MedicaidNumber",
+          "MemberHICN",
+          "AttendingNPI",
+          "AttendingLastName",
+          "AttendingFirstName",
+          "AdmittingNPI",
+          "AdmittingLastName",
+          "AdmittingFirstName",
+          "PCPName",
+          "PCPNPI",
+          "PCPGroupName",
+          "PCPGroupTIN",
+          "PCPPhone",
+          "IPAName",
+          "Region",
+          "FacilityName",
+          "FacilityNPI",
+          "FacilityMRN",
+          "FacilityID",
+          "FacilityCounty",
+          "AdmitType",
+          "AdmitSource",
+          "AdmissionDate",
+          "DischargeDate",
+          "DischargeDispositionCode",
+          "DischargeDispositionDesc",
+          "AdmissionReason",
+          "ChiefComplaint",
+          "DiagnosisList",
+          "Payer",
+          "LOB",
+          "InsuranceID",
+          "AuthID",
+          "AuthStatus",
+          "AuthLOS",
+          "RiskStratification",
+          "TOCCompleted",
+          "TransitionID",
+          "VbpID",
+          "HealthHomeID",
+          "HealthHomeName",
+          "HighAlert30dReadmit",
+          "DiabeticIndicator",
+          "MortalityRisk",
+          "OahDual",
+          "MarketName",
+          "PayrEntprs",
+          "ConfinementStatus",
+          "PlanID",
+          "SubGroup",
+          "FileName",
+          "FileDate",
+          "IsDeleted",
+          "RecordHash",
+          "SourceSystemIdType",
+          "FeedName",
+          "SourceSystem",
+          "CreatedBy",
+          "CreatedAt",
+          "UpdatedBy",
+          "UpdatedAt",
+          "BatchId"
+        ]
+      },
+      {
+        "name": "EncounterCinqExtTransform",
+        "transformation": "Expression",
+        "dependent_on": [
+          "fedelis_ip_downstate_3"
+        ],
+        "derived_fields": [
+          {
+            "name": "EncounterGroupId",
+            "expression": "concat(MEMBER_ID_src_1, '_', CAST(ACTUAL_ADMIT_DATE_src_1 AS STRING))"
+          },
+          {
+            "name": "PHNAssigned",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "BusinessHours",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "RiskCatCRG",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "RiskCatHCC",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "CaseAssignmentRiskType",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PregnancyFlag",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DeliveryFlag",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DischargeDateExpected",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDateExpectedEntryId",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DischargeDateExpectedLastEdit",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDateActual",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "MdVisitScheduled",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MdVisitScheduledDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "MdVisitDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "TransitionOfCare",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AuthID",
+            "expression": "AUTH_ID_src_1"
+          },
+          {
+            "name": "AuthStatus",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AuthLOS",
+            "expression": "CAST(AUTH_LOS_src_1 AS STRING)"
+          },
+          {
+            "name": "IsDeleted",
+            "expression": "FALSE"
+          },
+          {
+            "name": "RecordHash",
+            "expression": "md5(concat_ws('|', MEMBER_ID_src_1, CAST(ACTUAL_ADMIT_DATE_src_1 AS STRING), FACILITY_NAME_src_1, CONFINE_STATUS_src_1, AUTH_ID_src_1, PLAN_ID_src_1, SUB_GROUP_src_1))"
+          },
+          {
+            "name": "SourceSystemIdType",
+            "expression": "'Fidelis_MemberID'"
+          },
+          {
+            "name": "FeedName",
+            "expression": "'Fidelis_UM_Daily'"
+          },
+          {
+            "name": "SourceSystem",
+            "expression": "'Fidelis_UM'"
+          },
+          {
+            "name": "CreatedBy",
+            "expression": "'ADT_Fidelis_SilverRaw'"
+          },
+          {
+            "name": "CreatedAt",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "UpdatedBy",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "UpdatedAt",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "BatchId",
+            "expression": "CAST(NULL AS INT)"
+          }
+        ],
+        "select_columns": [
+          "EncounterGroupId",
+          "PHNAssigned",
+          "BusinessHours",
+          "RiskCatCRG",
+          "RiskCatHCC",
+          "CaseAssignmentRiskType",
+          "PregnancyFlag",
+          "DeliveryFlag",
+          "DischargeDateExpected",
+          "DischargeDateExpectedEntryId",
+          "DischargeDateExpectedLastEdit",
+          "DischargeDateActual",
+          "MdVisitScheduled",
+          "MdVisitScheduledDate",
+          "MdVisitDate",
+          "TransitionOfCare",
+          "AuthID",
+          "AuthStatus",
+          "AuthLOS",
+          "IsDeleted",
+          "RecordHash",
+          "SourceSystemIdType",
+          "FeedName",
+          "SourceSystem",
+          "CreatedBy",
+          "CreatedAt",
+          "UpdatedBy",
+          "UpdatedAt",
+          "BatchId"
+        ]
+      },
+      {
+        "name": "encounter_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "EncounterTransform"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "SourceSystemId",
+          "PatientId",
+          "VisitNumber",
+          "SourceMessageId",
+          "EventType",
+          "EventTypeDesc",
+          "PatientClass",
+          "VisitTypeDesc",
+          "MessageDate",
+          "ReceivedDatetime",
+          "LastName",
+          "FirstName",
+          "MiddleName",
+          "DateOfBirth",
+          "Gender",
+          "AddressLine1",
+          "AddressLine2",
+          "City",
+          "State",
+          "ZipCode",
+          "DeathIndicator",
+          "MedicaidNumber",
+          "MemberHICN",
+          "AttendingNPI",
+          "AttendingLastName",
+          "AttendingFirstName",
+          "AdmittingNPI",
+          "AdmittingLastName",
+          "AdmittingFirstName",
+          "PCPName",
+          "PCPNPI",
+          "PCPGroupName",
+          "PCPGroupTIN",
+          "PCPPhone",
+          "IPAName",
+          "Region",
+          "FacilityName",
+          "FacilityNPI",
+          "FacilityMRN",
+          "FacilityID",
+          "FacilityCounty",
+          "AdmitType",
+          "AdmitSource",
+          "AdmissionDate",
+          "DischargeDate",
+          "DischargeDispositionCode",
+          "DischargeDispositionDesc",
+          "AdmissionReason",
+          "ChiefComplaint",
+          "DiagnosisList",
+          "Payer",
+          "LOB",
+          "InsuranceID",
+          "AuthID",
+          "AuthStatus",
+          "AuthLOS",
+          "RiskStratification",
+          "TOCCompleted",
+          "TransitionID",
+          "VbpID",
+          "HealthHomeID",
+          "HealthHomeName",
+          "HighAlert30dReadmit",
+          "DiabeticIndicator",
+          "MortalityRisk",
+          "OahDual",
+          "MarketName",
+          "PayrEntprs",
+          "ConfinementStatus",
+          "PlanID",
+          "SubGroup",
+          "FileName",
+          "FileDate",
+          "IsDeleted",
+          "RecordHash",
+          "SourceSystemIdType",
+          "FeedName",
+          "SourceSystem",
+          "CreatedBy",
+          "CreatedAt",
+          "UpdatedBy",
+          "UpdatedAt",
+          "BatchId"
+        ],
+        "derived_fields": [
+          {
+            "name": "VisitNumber",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "SourceMessageId",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "EventTypeDesc",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PatientClass",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MessageDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "MiddleName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Gender",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AddressLine1",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AddressLine2",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "City",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "State",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DeathIndicator",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MedicaidNumber",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MemberHICN",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AttendingNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AttendingLastName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AttendingFirstName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmittingNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmittingLastName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmittingFirstName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPGroupName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PCPGroupTIN",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "IPAName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Region",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityNPI",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityMRN",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FacilityID",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AdmitSource",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DischargeDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDispositionCode",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DischargeDispositionDesc",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "ChiefComplaint",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DiagnosisList",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "Payer",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AuthStatus",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "RiskStratification",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "TOCCompleted",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "TransitionID",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MortalityRisk",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "OahDual",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MarketName",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PayrEntprs",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "FileDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          }
+        ]
+      },
+      {
+        "name": "encounter",
+        "transformation": "Writer",
+        "dependent_on": [
+          "encounter_final"
+        ],
+        "target": {
+          "$ref": "#/targets/encounter"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "encounter_cinq_ext_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "EncounterCinqExtTransform"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "EncounterGroupId",
+          "PHNAssigned",
+          "BusinessHours",
+          "RiskCatCRG",
+          "RiskCatHCC",
+          "CaseAssignmentRiskType",
+          "PregnancyFlag",
+          "DeliveryFlag",
+          "DischargeDateExpected",
+          "DischargeDateExpectedEntryId",
+          "DischargeDateExpectedLastEdit",
+          "DischargeDateActual",
+          "MdVisitScheduled",
+          "MdVisitScheduledDate",
+          "MdVisitDate",
+          "TransitionOfCare",
+          "AuthID",
+          "AuthStatus",
+          "AuthLOS",
+          "IsDeleted",
+          "RecordHash",
+          "SourceSystemIdType",
+          "FeedName",
+          "SourceSystem",
+          "CreatedBy",
+          "CreatedAt",
+          "UpdatedBy",
+          "UpdatedAt",
+          "BatchId"
+        ],
+        "derived_fields": [
+          {
+            "name": "PHNAssigned",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "BusinessHours",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "RiskCatCRG",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "RiskCatHCC",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "CaseAssignmentRiskType",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "PregnancyFlag",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DeliveryFlag",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "DischargeDateExpected",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDateExpectedEntryId",
+            "expression": "CAST(NULL AS INTEGER)"
+          },
+          {
+            "name": "DischargeDateExpectedLastEdit",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "DischargeDateActual",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "MdVisitScheduled",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "MdVisitScheduledDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "MdVisitDate",
+            "expression": "CAST(NULL AS TIMESTAMP)"
+          },
+          {
+            "name": "TransitionOfCare",
+            "expression": "CAST(NULL AS STRING)"
+          },
+          {
+            "name": "AuthStatus",
+            "expression": "CAST(NULL AS STRING)"
+          }
+        ]
+      },
+      {
+        "name": "encounter_cinq_ext",
+        "transformation": "Writer",
+        "dependent_on": [
+          "encounter_cinq_ext_final"
+        ],
+        "target": {
+          "$ref": "#/targets/encounter_cinq_ext"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
