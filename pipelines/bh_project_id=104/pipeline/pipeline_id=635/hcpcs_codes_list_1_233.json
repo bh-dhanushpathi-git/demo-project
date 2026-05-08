@@ -1,0 +1,233 @@
+{
+  "created_at": "2026-05-08T09:10:20.470464Z",
+  "updated_at": "2026-05-08T09:10:20.470464Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 635,
+  "pipeline_name": "hcpcs_codes_list_1_233",
+  "pipeline_key": "hcpcs_codes_list_1_233",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "hcpcs_codes_list_1_233",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [],
+    "connections": {
+      "landing_hcpcs_codes_list_1_file_connection": {
+        "name": "landing_hcpcs_codes_list_1_file_connection",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv"
+      },
+      "bronze_hcpcs_codes_list_1_db_connection": {
+        "name": "bronze_hcpcs_codes_list_1_db_connection",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_referance_data",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "landing_source_hcpcs_codes_list_1": {
+        "name": "landing_source_hcpcs_codes_list_1",
+        "source_type": "File",
+        "file_name": "bhargs/6-Reference Data/2026_DHS_Code_List_Addendum.xlsx",
+        "connection": {
+          "$ref": "#/connections/landing_hcpcs_codes_list_1_file_connection"
+        }
+      }
+    },
+    "targets": {
+      "bronze_target_hcpcs_codes_list_1": {
+        "name": "bronze_target_hcpcs_codes_list_1",
+        "target_type": "Relational",
+        "table_name": "hcpcs_codes_list_1",
+        "connection": {
+          "$ref": "#/connections/bronze_hcpcs_codes_list_1_db_connection"
+        },
+        "load_mode": "append",
+        "schema": "bronze_referance_data"
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_hcpcs_codes_list_1",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_hcpcs_codes_list_1"
+        },
+        "file_type": "Excel",
+        "read_options": {
+          "fetch_size": 10000,
+          "inferSchema": false,
+          "sheetName": "HCPCS CODES",
+          "sheet_name": "HCPCS CODES",
+          "useHeader": true,
+          "timestampFormat": "yyyy-MM-dd HH:mm:ss",
+          "treatEmptyValuesAsNulls": true,
+          "addColorColumns": false,
+          "maxRowsInMemory": 20,
+          "excerptSize": 10,
+          "mode": "PERMISSIVE",
+          "columnNameOfCorruptRecord": "_corrupt_record"
+        },
+        "schema": [
+          {
+            "name": "hcpcs_code",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "procedure_description",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_hcpcs_codes_list_1"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'hcpcs_codes_list_1'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_hcpcs_codes_list_1",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_hcpcs_codes_list_1",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_hcpcs_codes_list_1"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "hcpcs_codes_list_1",
+      "business_date": "2026-05-08",
+      "delivery_id": "hcpcs_codes_list_1_2026-05-08",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_hcpcs_codes_list_1",
+          "add_lineage_metadata",
+          "schema_drift_guard",
+          "bronze_write_hcpcs_codes_list_1"
+        ]
+      },
+      "error_threshold_pct": 50.0
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
