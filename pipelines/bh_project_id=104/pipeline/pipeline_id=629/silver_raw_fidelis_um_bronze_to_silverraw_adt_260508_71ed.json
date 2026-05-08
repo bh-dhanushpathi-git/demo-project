@@ -1,0 +1,63 @@
+{
+  "created_at": "2026-05-08T06:42:24.154593Z",
+  "updated_at": "2026-05-08T06:42:24.154593Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 629,
+  "pipeline_name": "silver_raw_fidelis_um_bronze_to_silverraw_adt_260508_71ed",
+  "pipeline_key": "silver_raw_fidelis_um_bronze_to_silverraw_adt_260508_71ed",
+  "bh_project_id": 104,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 271,
+    "data_domain_name": "ADT (Admission, Discharge, Transfer)",
+    "source_count": 2,
+    "target_count": 3
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "data_domain_id": 271,
+    "data_domain_name": "ADT (Admission, Discharge, Transfer)",
+    "ingestion_group_id": 229,
+    "source_rows": [
+      {
+        "data_src_id": 952,
+        "ingest_object_id": null,
+        "label": "fedelis_ip_upstate_3_1 \u00b7 bronze_adt.fedelis_ip_upstate_3_1"
+      },
+      {
+        "data_src_id": 950,
+        "ingest_object_id": null,
+        "label": "fedelis_ip_downstate_3_c0sks \u00b7 bronze_adt.fedelis_ip_downstate_3_1"
+      }
+    ],
+    "target_rows": [
+      {
+        "data_src_id": 866,
+        "label": "encounter_location_history \u00b7 silverraw_adt.encounter_location_history"
+      },
+      {
+        "data_src_id": 865,
+        "label": "encounter \u00b7 silverraw_adt.encounter"
+      },
+      {
+        "data_src_id": 864,
+        "label": "encounter_cinq_ext \u00b7 silverraw_adt.encounter_cinq_ext"
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
