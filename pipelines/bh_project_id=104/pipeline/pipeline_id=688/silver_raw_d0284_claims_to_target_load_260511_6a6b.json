@@ -1,0 +1,96 @@
+{
+  "created_at": "2026-05-11T13:40:28.718573Z",
+  "updated_at": "2026-05-11T13:40:28.718573Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 688,
+  "pipeline_name": "silver_raw_d0284_claims_to_target_load_260511_6a6b",
+  "pipeline_key": "silver_raw_d0284_claims_to_target_load_260511_6a6b",
+  "bh_project_id": 104,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 261,
+    "data_domain_name": "Claims",
+    "source_count": 3,
+    "target_count": 10
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "data_domain_id": 261,
+    "data_domain_name": "Claims",
+    "ingestion_group_id": 267,
+    "source_rows": [
+      {
+        "data_src_id": 1112,
+        "ingest_object_id": null,
+        "label": "mssp_patient \u00b7 bronze_claims.mssp_patient"
+      },
+      {
+        "data_src_id": 1110,
+        "ingest_object_id": null,
+        "label": "mssp_coverage \u00b7 bronze_claims.mssp_coverage"
+      },
+      {
+        "data_src_id": 1108,
+        "ingest_object_id": null,
+        "label": "mssp_explanationofbenefit_q091f \u00b7 bronze_claims.mssp_explanationofbenefit"
+      }
+    ],
+    "target_rows": [
+      {
+        "data_src_id": 763,
+        "label": "pharmacy_claim_line \u00b7 silverraw_claims.pharmacy_claim_line"
+      },
+      {
+        "data_src_id": 762,
+        "label": "pharmacy_claim_header \u00b7 silverraw_claims.pharmacy_claim_header"
+      },
+      {
+        "data_src_id": 760,
+        "label": "pharmacy_claim_adjudication \u00b7 silverraw_claims.pharmacy_claim_adjudication"
+      },
+      {
+        "data_src_id": 759,
+        "label": "pharmacy_claim_line_adjudication \u00b7 silverraw_claims.pharmacy_claim_line_adjudication"
+      },
+      {
+        "data_src_id": 758,
+        "label": "claim_procedure \u00b7 silverraw_claims.claim_procedure"
+      },
+      {
+        "data_src_id": 756,
+        "label": "claim_line_adjudication \u00b7 silverraw_claims.claim_line_adjudication"
+      },
+      {
+        "data_src_id": 755,
+        "label": "claim_header \u00b7 silverraw_claims.claim_header"
+      },
+      {
+        "data_src_id": 754,
+        "label": "claim_diagnosis \u00b7 silverraw_claims.claim_diagnosis"
+      },
+      {
+        "data_src_id": 753,
+        "label": "claim_line \u00b7 silverraw_claims.claim_line"
+      },
+      {
+        "data_src_id": 752,
+        "label": "claim_adjudication \u00b7 silverraw_claims.claim_adjudication"
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
