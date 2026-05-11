@@ -1,0 +1,711 @@
+{
+  "created_at": "2026-05-11T11:29:10.542817Z",
+  "updated_at": "2026-05-11T11:29:10.542817Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 676,
+  "pipeline_name": "ingestion_testing_1",
+  "pipeline_key": "ingestion_testing_1",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "ingestion_testing_1",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [],
+    "connections": {
+      "landing_safeharbor_coverage_file_connection_obj281": {
+        "name": "landing_safeharbor_coverage_file_connection_obj281",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_safeharbor_coverage_db_connection_obj281": {
+        "name": "bronze_safeharbor_coverage_db_connection_obj281",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_claims",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      },
+      "landing_safeharbor_explanationofbenefit_file_connection_obj282": {
+        "name": "landing_safeharbor_explanationofbenefit_file_connection_obj282",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_safeharbor_explanationofbenefit_db_connection_obj282": {
+        "name": "bronze_safeharbor_explanationofbenefit_db_connection_obj282",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_claims",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      },
+      "landing_safeharbor_patient_file_connection_obj283": {
+        "name": "landing_safeharbor_patient_file_connection_obj283",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_safeharbor_patient_db_connection_obj283": {
+        "name": "bronze_safeharbor_patient_db_connection_obj283",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "bronze_claims",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      }
+    },
+    "sources": {
+      "landing_source_safeharbor_coverage_obj281": {
+        "name": "landing_source_safeharbor_coverage_obj281",
+        "source_type": "File",
+        "file_name": "bhargs/3-Claims/3-Claims/D0284/2025 Data/safeharbor_Coverage.ndjson",
+        "connection": {
+          "$ref": "#/connections/landing_safeharbor_coverage_file_connection_obj281"
+        },
+        "data_src_id": 1071
+      },
+      "landing_source_safeharbor_explanationofbenefit_obj282": {
+        "name": "landing_source_safeharbor_explanationofbenefit_obj282",
+        "source_type": "File",
+        "file_name": "bhargs/3-Claims/3-Claims/D0284/2025 Data/safeharbor_ExplanationOfBenefit.ndjson",
+        "connection": {
+          "$ref": "#/connections/landing_safeharbor_explanationofbenefit_file_connection_obj282"
+        },
+        "data_src_id": 1073
+      },
+      "landing_source_safeharbor_patient_obj283": {
+        "name": "landing_source_safeharbor_patient_obj283",
+        "source_type": "File",
+        "file_name": "bhargs/3-Claims/3-Claims/D0284/2025 Data/safeharbor_Patient.ndjson",
+        "connection": {
+          "$ref": "#/connections/landing_safeharbor_patient_file_connection_obj283"
+        },
+        "data_src_id": 1075
+      }
+    },
+    "targets": {
+      "bronze_target_safeharbor_coverage_obj281": {
+        "name": "bronze_target_safeharbor_coverage_obj281",
+        "target_type": "Relational",
+        "table_name": "safeharbor_coverage",
+        "connection": {
+          "$ref": "#/connections/bronze_safeharbor_coverage_db_connection_obj281"
+        },
+        "load_mode": "append",
+        "schema": "bronze_claims",
+        "data_src_id": 1072
+      },
+      "bronze_target_safeharbor_explanationofbenefit_obj282": {
+        "name": "bronze_target_safeharbor_explanationofbenefit_obj282",
+        "target_type": "Relational",
+        "table_name": "safeharbor_explanationofbenefit",
+        "connection": {
+          "$ref": "#/connections/bronze_safeharbor_explanationofbenefit_db_connection_obj282"
+        },
+        "load_mode": "append",
+        "schema": "bronze_claims",
+        "data_src_id": 1074
+      },
+      "bronze_target_safeharbor_patient_obj283": {
+        "name": "bronze_target_safeharbor_patient_obj283",
+        "target_type": "Relational",
+        "table_name": "safeharbor_patient",
+        "connection": {
+          "$ref": "#/connections/bronze_safeharbor_patient_db_connection_obj283"
+        },
+        "load_mode": "append",
+        "schema": "bronze_claims",
+        "data_src_id": 1076
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_safeharbor_coverage_obj281",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_safeharbor_coverage_obj281"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": false,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj281",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_safeharbor_coverage_obj281"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'safeharbor_coverage'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj281",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj281"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_safeharbor_coverage",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_safeharbor_coverage_obj281",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj281"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_safeharbor_coverage_obj281"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_safeharbor_explanationofbenefit_obj282",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_safeharbor_explanationofbenefit_obj282"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj282",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_safeharbor_explanationofbenefit_obj282"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'safeharbor_explanationofbenefit'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj282",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj282"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_safeharbor_explanationofbenefit",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_safeharbor_explanationofbenefit_obj282",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj282"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_safeharbor_explanationofbenefit_obj282"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_safeharbor_patient_obj283",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_safeharbor_patient_obj283"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": false,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "_corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "_corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj283",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_safeharbor_patient_obj283"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'safeharbor_patient'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj283",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj283"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "schema_drift_safeharbor_patient",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_safeharbor_patient_obj283",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj283"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_safeharbor_patient_obj283"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "ingestion_testing_1",
+      "business_date": "2026-05-11",
+      "delivery_id": "ingestion_testing_1_2026-05-11",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "main",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_safeharbor_coverage_obj281",
+          "add_lineage_metadata_obj281",
+          "schema_drift_guard_obj281",
+          "bronze_write_safeharbor_coverage_obj281",
+          "landing_read_safeharbor_explanationofbenefit_obj282",
+          "add_lineage_metadata_obj282",
+          "schema_drift_guard_obj282",
+          "bronze_write_safeharbor_explanationofbenefit_obj282",
+          "landing_read_safeharbor_patient_obj283",
+          "add_lineage_metadata_obj283",
+          "schema_drift_guard_obj283",
+          "bronze_write_safeharbor_patient_obj283"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 258,
+      "expected_group_members": 3,
+      "group_run_id": "ingestion_testing_1_20260511T112908Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
