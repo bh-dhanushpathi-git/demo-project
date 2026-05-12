@@ -1,0 +1,1123 @@
+{
+  "created_at": "2026-05-12T10:29:45.902250Z",
+  "updated_at": "2026-05-12T10:34:33.198962Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 709,
+  "pipeline_name": "silver_raw_no_description_pipeline_260512_cc96",
+  "pipeline_key": "silver_raw_no_description_pipeline_260512_cc96",
+  "bh_project_id": 104,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 266,
+    "data_domain_name": "Reference",
+    "source_count": 4,
+    "target_count": 4
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_no_description_pipeline_260512_cc96",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "databricks_d__db_env_cinqdev": {
+        "connection_config_id": 140,
+        "name": "databricks_d__db_env_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "reader_excel_0": {
+        "data_src_id": 1196,
+        "name": "reader_excel_0",
+        "source_type": "Relational",
+        "table_name": "reader_excel_0",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "fields": [
+          "json_payload",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": null
+      },
+      "reader_csv_1": {
+        "data_src_id": 1198,
+        "name": "reader_csv_1",
+        "source_type": "Relational",
+        "table_name": "reader_csv_1",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "fields": [
+          "json_payload",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": null
+      },
+      "reader_excel_0_1": {
+        "data_src_id": 1200,
+        "name": "reader_excel_0_1",
+        "source_type": "Relational",
+        "table_name": "reader_excel_0_1",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "fields": [
+          "json_payload",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": null
+      },
+      "reader_csv_1_1": {
+        "data_src_id": 1202,
+        "name": "reader_csv_1_1",
+        "source_type": "Relational",
+        "table_name": "reader_csv_1_1",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "fields": [
+          "json_payload",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": null
+      }
+    },
+    "targets": {
+      "claim_provider": {
+        "data_src_id": 757,
+        "name": "claim_provider",
+        "target_type": "Relational",
+        "table_name": "claim_provider",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "schema": "silverraw_claims",
+        "merge_keys": [
+          "source_system",
+          "source_claim_id",
+          "provider_sequence",
+          "provider_role_code"
+        ],
+        "process_deletes": false
+      },
+      "patient": {
+        "data_src_id": 761,
+        "name": "patient",
+        "target_type": "Relational",
+        "table_name": "patient",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "schema": "silverraw_claims",
+        "merge_keys": [
+          "source_system",
+          "source_member_id"
+        ],
+        "process_deletes": false
+      }
+    },
+    "transformations": [
+      {
+        "name": "reader_excel_0",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/reader_excel_0"
+        },
+        "rename_columns": {
+          "json_payload": "json_payload_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "batch_id": "batch_id_src_1",
+          "feed_name": "feed_name_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "ingest_day": "ingest_day_src_1"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "reader_excel_0_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "reader_excel_0"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_1) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "reader_excel_0_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "reader_excel_0_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')"
+      },
+      {
+        "name": "reader_csv_1",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/reader_csv_1"
+        },
+        "rename_columns": {
+          "json_payload": "json_payload_src_2",
+          "corrupt_record": "corrupt_record_src_2",
+          "batch_id": "batch_id_src_2",
+          "feed_name": "feed_name_src_2",
+          "ingest_ts": "ingest_ts_src_2",
+          "ingest_year": "ingest_year_src_2",
+          "ingest_month": "ingest_month_src_2",
+          "ingest_day": "ingest_day_src_2"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "reader_csv_1_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "reader_csv_1"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_2) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "reader_csv_1_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "reader_csv_1_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_2 = max_batch_id AND (corrupt_record_src_2 IS NULL OR corrupt_record_src_2 = '')"
+      },
+      {
+        "name": "reader_excel_0_1",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/reader_excel_0_1"
+        },
+        "rename_columns": {
+          "json_payload": "json_payload_src_3",
+          "corrupt_record": "corrupt_record_src_3",
+          "batch_id": "batch_id_src_3",
+          "feed_name": "feed_name_src_3",
+          "ingest_ts": "ingest_ts_src_3",
+          "ingest_year": "ingest_year_src_3",
+          "ingest_month": "ingest_month_src_3",
+          "ingest_day": "ingest_day_src_3"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "reader_excel_0_1_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "reader_excel_0_1"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_3) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "reader_excel_0_1_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "reader_excel_0_1_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_3 = max_batch_id AND (corrupt_record_src_3 IS NULL OR corrupt_record_src_3 = '')"
+      },
+      {
+        "name": "reader_csv_1_1",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/reader_csv_1_1"
+        },
+        "rename_columns": {
+          "json_payload": "json_payload_src_4",
+          "corrupt_record": "corrupt_record_src_4",
+          "batch_id": "batch_id_src_4",
+          "feed_name": "feed_name_src_4",
+          "ingest_ts": "ingest_ts_src_4",
+          "ingest_year": "ingest_year_src_4",
+          "ingest_month": "ingest_month_src_4",
+          "ingest_day": "ingest_day_src_4"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "reader_csv_1_1_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "reader_csv_1_1"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_4) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "reader_csv_1_1_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "reader_csv_1_1_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_4 = max_batch_id AND (corrupt_record_src_4 IS NULL OR corrupt_record_src_4 = '')"
+      },
+      {
+        "name": "ClaimProviderExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "reader_excel_0_IngestFilter"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "coalesce(CAST(batch_id_src_1 AS String), '')"
+          },
+          {
+            "name": "record_hash",
+            "expression": "uuid()"
+          },
+          {
+            "name": "is_deleted",
+            "expression": "false"
+          },
+          {
+            "name": "created_by",
+            "expression": "'ETL_SYSTEM'"
+          },
+          {
+            "name": "created_at",
+            "expression": "coalesce(ingest_ts_src_1, current_timestamp())"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'ETL_SYSTEM'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "coalesce(ingest_ts_src_1, current_timestamp())"
+          },
+          {
+            "name": "source_system",
+            "expression": "coalesce(feed_name_src_1, '')"
+          },
+          {
+            "name": "source_claim_id",
+            "expression": "coalesce(get_json_object(json_payload_src_1, '$.claim_id'), '')"
+          },
+          {
+            "name": "provider_sequence",
+            "expression": "coalesce(CAST(get_json_object(json_payload_src_1, '$.provider_sequence') AS Integer), 0)"
+          },
+          {
+            "name": "provider_role_code",
+            "expression": "coalesce(get_json_object(json_payload_src_1, '$.provider_role_code'), '')"
+          },
+          {
+            "name": "provider_role_system",
+            "expression": "get_json_object(json_payload_src_1, '$.provider_role_system')"
+          },
+          {
+            "name": "provider_identifier_system",
+            "expression": "get_json_object(json_payload_src_1, '$.provider_identifier_system')"
+          },
+          {
+            "name": "provider_identifier_value",
+            "expression": "get_json_object(json_payload_src_1, '$.provider_identifier_value')"
+          },
+          {
+            "name": "source_line_id",
+            "expression": "get_json_object(json_payload_src_1, '$.source_line_id')"
+          },
+          {
+            "name": "provider_scope",
+            "expression": "get_json_object(json_payload_src_1, '$.provider_scope')"
+          },
+          {
+            "name": "npi",
+            "expression": "get_json_object(json_payload_src_1, '$.npi')"
+          },
+          {
+            "name": "tin",
+            "expression": "get_json_object(json_payload_src_1, '$.tin')"
+          },
+          {
+            "name": "hash_scd1",
+            "expression": "uuid()"
+          },
+          {
+            "name": "hash_scd2",
+            "expression": "uuid()"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "provider_sequence",
+          "provider_role_code",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "source_line_id",
+          "provider_scope",
+          "npi",
+          "tin",
+          "hash_scd1",
+          "hash_scd2"
+        ]
+      },
+      {
+        "name": "PatientExpression",
+        "transformation": "Expression",
+        "dependent_on": [
+          "reader_excel_0_IngestFilter"
+        ],
+        "derived_fields": [
+          {
+            "name": "batch_id",
+            "expression": "coalesce(CAST(batch_id_src_1 AS String), '')"
+          },
+          {
+            "name": "record_hash",
+            "expression": "uuid()"
+          },
+          {
+            "name": "is_deleted",
+            "expression": "false"
+          },
+          {
+            "name": "created_by",
+            "expression": "'ETL_SYSTEM'"
+          },
+          {
+            "name": "created_at",
+            "expression": "coalesce(ingest_ts_src_1, current_timestamp())"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'ETL_SYSTEM'"
+          },
+          {
+            "name": "updated_at",
+            "expression": "coalesce(ingest_ts_src_1, current_timestamp())"
+          },
+          {
+            "name": "source_system",
+            "expression": "coalesce(feed_name_src_1, '')"
+          },
+          {
+            "name": "source_member_id",
+            "expression": "coalesce(get_json_object(json_payload_src_1, '$.member_id'), '')"
+          },
+          {
+            "name": "mbi_id",
+            "expression": "get_json_object(json_payload_src_1, '$.mbi_id')"
+          },
+          {
+            "name": "hicn",
+            "expression": "get_json_object(json_payload_src_1, '$.hicn')"
+          },
+          {
+            "name": "first_name",
+            "expression": "get_json_object(json_payload_src_1, '$.first_name')"
+          },
+          {
+            "name": "middle_name",
+            "expression": "get_json_object(json_payload_src_1, '$.middle_name')"
+          },
+          {
+            "name": "last_name",
+            "expression": "get_json_object(json_payload_src_1, '$.last_name')"
+          },
+          {
+            "name": "date_of_birth",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.date_of_birth') AS Date)"
+          },
+          {
+            "name": "deceased_date",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.deceased_date') AS Date)"
+          },
+          {
+            "name": "death_indicator",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.death_indicator') AS Boolean)"
+          },
+          {
+            "name": "gender",
+            "expression": "get_json_object(json_payload_src_1, '$.gender')"
+          },
+          {
+            "name": "race_code",
+            "expression": "get_json_object(json_payload_src_1, '$.race_code')"
+          },
+          {
+            "name": "ethnicity_code",
+            "expression": "get_json_object(json_payload_src_1, '$.ethnicity_code')"
+          },
+          {
+            "name": "address_line1",
+            "expression": "get_json_object(json_payload_src_1, '$.address_line1')"
+          },
+          {
+            "name": "address_line2",
+            "expression": "get_json_object(json_payload_src_1, '$.address_line2')"
+          },
+          {
+            "name": "city",
+            "expression": "get_json_object(json_payload_src_1, '$.city')"
+          },
+          {
+            "name": "state",
+            "expression": "get_json_object(json_payload_src_1, '$.state')"
+          },
+          {
+            "name": "zip_code",
+            "expression": "get_json_object(json_payload_src_1, '$.zip_code')"
+          },
+          {
+            "name": "country",
+            "expression": "get_json_object(json_payload_src_1, '$.country')"
+          },
+          {
+            "name": "address_line3",
+            "expression": "get_json_object(json_payload_src_1, '$.address_line3')"
+          },
+          {
+            "name": "address_line4",
+            "expression": "get_json_object(json_payload_src_1, '$.address_line4')"
+          },
+          {
+            "name": "address_line5",
+            "expression": "get_json_object(json_payload_src_1, '$.address_line5')"
+          },
+          {
+            "name": "address_line6",
+            "expression": "get_json_object(json_payload_src_1, '$.address_line6')"
+          },
+          {
+            "name": "county_fips_code",
+            "expression": "get_json_object(json_payload_src_1, '$.county_fips_code')"
+          },
+          {
+            "name": "state_fips_code",
+            "expression": "get_json_object(json_payload_src_1, '$.state_fips_code')"
+          },
+          {
+            "name": "zip5",
+            "expression": "get_json_object(json_payload_src_1, '$.zip5')"
+          },
+          {
+            "name": "zip4",
+            "expression": "get_json_object(json_payload_src_1, '$.zip4')"
+          },
+          {
+            "name": "mdcr_status_code",
+            "expression": "get_json_object(json_payload_src_1, '$.mdcr_status_code')"
+          },
+          {
+            "name": "dual_status_code",
+            "expression": "get_json_object(json_payload_src_1, '$.dual_status_code')"
+          },
+          {
+            "name": "original_entitlement_reason_code",
+            "expression": "get_json_object(json_payload_src_1, '$.original_entitlement_reason_code')"
+          },
+          {
+            "name": "entitlement_buyin_indicator",
+            "expression": "get_json_object(json_payload_src_1, '$.entitlement_buyin_indicator')"
+          },
+          {
+            "name": "part_a_enrollment_begin_date",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.part_a_enrollment_begin_date') AS Date)"
+          },
+          {
+            "name": "part_b_enrollment_begin_date",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.part_b_enrollment_begin_date') AS Date)"
+          },
+          {
+            "name": "bene_rng_bgn_dt",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.bene_rng_bgn_dt') AS Date)"
+          },
+          {
+            "name": "bene_rng_end_dt",
+            "expression": "CAST(get_json_object(json_payload_src_1, '$.bene_rng_end_dt') AS Date)"
+          },
+          {
+            "name": "hash_scd1",
+            "expression": "uuid()"
+          },
+          {
+            "name": "hash_scd2",
+            "expression": "uuid()"
+          }
+        ],
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_member_id",
+          "mbi_id",
+          "hicn",
+          "first_name",
+          "middle_name",
+          "last_name",
+          "date_of_birth",
+          "deceased_date",
+          "death_indicator",
+          "gender",
+          "race_code",
+          "ethnicity_code",
+          "address_line1",
+          "address_line2",
+          "city",
+          "state",
+          "zip_code",
+          "country",
+          "address_line3",
+          "address_line4",
+          "address_line5",
+          "address_line6",
+          "county_fips_code",
+          "state_fips_code",
+          "zip5",
+          "zip4",
+          "mdcr_status_code",
+          "dual_status_code",
+          "original_entitlement_reason_code",
+          "entitlement_buyin_indicator",
+          "part_a_enrollment_begin_date",
+          "part_b_enrollment_begin_date",
+          "bene_rng_bgn_dt",
+          "bene_rng_end_dt",
+          "hash_scd1",
+          "hash_scd2"
+        ]
+      },
+      {
+        "name": "claim_provider_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "ClaimProviderExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_claim_id",
+          "provider_sequence",
+          "provider_role_code",
+          "provider_role_system",
+          "provider_identifier_system",
+          "provider_identifier_value",
+          "source_line_id",
+          "provider_scope",
+          "npi",
+          "tin",
+          "hash_scd1",
+          "hash_scd2"
+        ]
+      },
+      {
+        "name": "claim_provider",
+        "transformation": "Writer",
+        "dependent_on": [
+          "claim_provider_final"
+        ],
+        "target": {
+          "$ref": "#/targets/claim_provider"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      },
+      {
+        "name": "patient_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "PatientExpression"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "batch_id",
+          "record_hash",
+          "is_deleted",
+          "created_by",
+          "created_at",
+          "updated_by",
+          "updated_at",
+          "source_system",
+          "source_member_id",
+          "mbi_id",
+          "hicn",
+          "first_name",
+          "middle_name",
+          "last_name",
+          "date_of_birth",
+          "deceased_date",
+          "death_indicator",
+          "gender",
+          "race_code",
+          "ethnicity_code",
+          "address_line1",
+          "address_line2",
+          "city",
+          "state",
+          "zip_code",
+          "country",
+          "address_line3",
+          "address_line4",
+          "address_line5",
+          "address_line6",
+          "county_fips_code",
+          "state_fips_code",
+          "zip5",
+          "zip4",
+          "mdcr_status_code",
+          "dual_status_code",
+          "original_entitlement_reason_code",
+          "entitlement_buyin_indicator",
+          "part_a_enrollment_begin_date",
+          "part_b_enrollment_begin_date",
+          "bene_rng_bgn_dt",
+          "bene_rng_end_dt",
+          "hash_scd1",
+          "hash_scd2"
+        ]
+      },
+      {
+        "name": "patient",
+        "transformation": "Writer",
+        "dependent_on": [
+          "patient_final"
+        ],
+        "target": {
+          "$ref": "#/targets/patient"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      }
+    ]
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
