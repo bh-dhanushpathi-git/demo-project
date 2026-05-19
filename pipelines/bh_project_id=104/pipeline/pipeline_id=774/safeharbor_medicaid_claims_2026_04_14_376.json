@@ -1,0 +1,700 @@
+{
+  "created_at": "2026-05-19T11:26:10.961633Z",
+  "updated_at": "2026-05-19T11:43:14.008219Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 774,
+  "pipeline_name": "safeharbor_medicaid_claims_2026_04_14_376",
+  "pipeline_key": "safeharbor_medicaid_claims_2026_04_14_376",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "safeharbor_medicaid_claims_2026_04_14_376",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "safeharbor_medicaid_claims_2026_04_14",
+        "value": "bhargs/3-Claims/3-Claims/Centene GA Medicaid/safeharbor_Medicaid Claims - 2026-04-14.txt"
+      }
+    ],
+    "connections": {
+      "landing_safeharbor_medicaid_claims_2026_04_14_file_connection": {
+        "name": "landing_safeharbor_medicaid_claims_2026_04_14_file_connection",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_safeharbor_medicaid_claims_2026_04_14_db_connection": {
+        "name": "bronze_safeharbor_medicaid_claims_2026_04_14_db_connection",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      }
+    },
+    "sources": {
+      "landing_source_safeharbor_medicaid_claims_2026_04_14": {
+        "name": "landing_source_safeharbor_medicaid_claims_2026_04_14",
+        "source_type": "File",
+        "file_name": "${safeharbor_medicaid_claims_2026_04_14}",
+        "connection": {
+          "$ref": "#/connections/landing_safeharbor_medicaid_claims_2026_04_14_file_connection"
+        },
+        "data_src_id": 1327
+      }
+    },
+    "targets": {
+      "bronze_target_safeharbor_medicaid_claims_2026_04_14": {
+        "name": "bronze_target_safeharbor_medicaid_claims_2026_04_14",
+        "target_type": "Relational",
+        "table_name": "safeharbor_medicaid_claims_2026_04_14",
+        "connection": {
+          "$ref": "#/connections/bronze_safeharbor_medicaid_claims_2026_04_14_db_connection"
+        },
+        "load_mode": "append",
+        "schema": "staging",
+        "data_src_id": 1328
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_safeharbor_medicaid_claims_2026_04_14",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_safeharbor_medicaid_claims_2026_04_14"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ",",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "LOB",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_MEDICAID_ID",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_KEY",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_SEX",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MEMBER_DOB",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "CLAIM_NBR",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "SERVICE_START_DATE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "SERVICE_END_DATE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "SERV_LINE",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "PROC_CODE_1",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "PROC_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PROC_CODE_2",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "PROC2_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MODIFIER1",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "MODIFIER1_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "MODIFIER2",
+            "type": "integer",
+            "nullable": false
+          },
+          {
+            "name": "MODIFIER2_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PRIMARY_DIAG_CODE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DIAG_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "DIAG_CODE_2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "DIAG2_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PLACE_OF_SERV_CODE",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "PLACE_OF_SERV_DESC",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "SERV_IRS_NBR",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_IRS_NAME",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_NPI",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_PROV_KEY",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_FIRST_NAME",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_LAST_NAME",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_ADDRESS1",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_ADDRESS2",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_CITY",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_STATE",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "SERV_ZIP",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "SERV_PHONE",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "SERV_FAX",
+            "type": "long",
+            "nullable": true
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_safeharbor_medicaid_claims_2026_04_14"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'safeharbor_medicaid_claims_2026_04_14'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "expected_schema": [
+          {
+            "name": "LOB",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_MEDICAID_ID",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_KEY",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_NAME",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_SEX",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MEMBER_DOB",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "CLAIM_NBR",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "SERVICE_START_DATE",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "SERVICE_END_DATE",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "SERV_LINE",
+            "type": "long",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PROC_CODE_1",
+            "type": "integer",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PROC_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PROC_CODE_2",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "PROC2_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MODIFIER1",
+            "type": "integer",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MODIFIER1_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MODIFIER2",
+            "type": "integer",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "MODIFIER2_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PRIMARY_DIAG_CODE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DIAG_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "DIAG_CODE_2",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "DIAG2_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PLACE_OF_SERV_CODE",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "PLACE_OF_SERV_DESC",
+            "type": "string",
+            "nullable": false,
+            "is_required": true
+          },
+          {
+            "name": "SERV_IRS_NBR",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_IRS_NAME",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_NPI",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_PROV_KEY",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_FIRST_NAME",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_LAST_NAME",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_ADDRESS1",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_ADDRESS2",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_CITY",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_STATE",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_ZIP",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_PHONE",
+            "type": "long",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "SERV_FAX",
+            "type": "long",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          }
+        ],
+        "dataset_id": "safeharbor_medicaid_claims_2026_04_14",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_safeharbor_medicaid_claims_2026_04_14",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_safeharbor_medicaid_claims_2026_04_14"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "safeharbor_medicaid_claims_2026_04_14",
+      "business_date": "2026-05-19",
+      "delivery_id": "safeharbor_medicaid_claims_2026_04_14_2026-05-19",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "cinqdev",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_safeharbor_medicaid_claims_2026_04_14",
+          "add_lineage_metadata",
+          "schema_drift_guard",
+          "bronze_write_safeharbor_medicaid_claims_2026_04_14"
+        ]
+      },
+      "error_threshold_pct": 50.0
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
