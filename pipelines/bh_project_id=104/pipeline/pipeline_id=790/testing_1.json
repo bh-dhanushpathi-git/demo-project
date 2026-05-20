@@ -1,0 +1,651 @@
+{
+  "created_at": "2026-05-20T12:33:53.687851Z",
+  "updated_at": "2026-05-20T12:40:29.244728Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 790,
+  "pipeline_name": "testing_1",
+  "pipeline_key": "testing_1",
+  "bh_project_id": 104,
+  "notes": null,
+  "tags": null,
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "name": "testing_1",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "parameters": [
+      {
+        "key": "eob",
+        "value": "bhargs/3-Claims/3-Claims/MSSP/small_data_day-2/eob.ndjson"
+      },
+      {
+        "key": "safeharbor_coverage_mssp",
+        "value": "bhargs/3-Claims/3-Claims/MSSP/small_data_day-2/safeharbor_Coverage_mssp.ndjson"
+      },
+      {
+        "key": "safeharbor_patient_mssp",
+        "value": "bhargs/3-Claims/3-Claims/MSSP/small_data_day-2/safeharbor_Patient_mssp.ndjson"
+      }
+    ],
+    "connections": {
+      "landing_eob_file_connection_obj727": {
+        "name": "landing_eob_file_connection_obj727",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_eob_db_connection_obj727": {
+        "name": "bronze_eob_db_connection_obj727",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      },
+      "landing_safeharbor_coverage_mssp_file_connection_obj728": {
+        "name": "landing_safeharbor_coverage_mssp_file_connection_obj728",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_safeharbor_coverage_mssp_db_connection_obj728": {
+        "name": "bronze_safeharbor_coverage_mssp_db_connection_obj728",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      },
+      "landing_safeharbor_patient_mssp_file_connection_obj729": {
+        "name": "landing_safeharbor_patient_mssp_file_connection_obj729",
+        "connection_type": "azure_blob",
+        "container_name": "my-test-bucket",
+        "file_path_prefix": "",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureblob-blobstoragedbenv",
+        "connection_config_id": 141
+      },
+      "bronze_safeharbor_patient_mssp_db_connection_obj729": {
+        "name": "bronze_safeharbor_patient_mssp_db_connection_obj729",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv",
+        "connection_config_id": 140
+      }
+    },
+    "sources": {
+      "landing_source_eob_obj727": {
+        "name": "landing_source_eob_obj727",
+        "source_type": "File",
+        "file_name": "${eob}",
+        "connection": {
+          "$ref": "#/connections/landing_eob_file_connection_obj727"
+        },
+        "data_src_id": 1441
+      },
+      "landing_source_safeharbor_coverage_mssp_obj728": {
+        "name": "landing_source_safeharbor_coverage_mssp_obj728",
+        "source_type": "File",
+        "file_name": "${safeharbor_coverage_mssp}",
+        "connection": {
+          "$ref": "#/connections/landing_safeharbor_coverage_mssp_file_connection_obj728"
+        },
+        "data_src_id": 1443
+      },
+      "landing_source_safeharbor_patient_mssp_obj729": {
+        "name": "landing_source_safeharbor_patient_mssp_obj729",
+        "source_type": "File",
+        "file_name": "${safeharbor_patient_mssp}",
+        "connection": {
+          "$ref": "#/connections/landing_safeharbor_patient_mssp_file_connection_obj729"
+        },
+        "data_src_id": 1445
+      }
+    },
+    "targets": {
+      "bronze_target_eob_obj727": {
+        "name": "bronze_target_eob_obj727",
+        "target_type": "Relational",
+        "table_name": "eob",
+        "connection": {
+          "$ref": "#/connections/bronze_eob_db_connection_obj727"
+        },
+        "load_mode": "append",
+        "schema": "staging",
+        "data_src_id": 1442
+      },
+      "bronze_target_safeharbor_coverage_mssp_obj728": {
+        "name": "bronze_target_safeharbor_coverage_mssp_obj728",
+        "target_type": "Relational",
+        "table_name": "safeharbor_coverage_mssp",
+        "connection": {
+          "$ref": "#/connections/bronze_safeharbor_coverage_mssp_db_connection_obj728"
+        },
+        "load_mode": "append",
+        "schema": "staging",
+        "data_src_id": 1444
+      },
+      "bronze_target_safeharbor_patient_mssp_obj729": {
+        "name": "bronze_target_safeharbor_patient_mssp_obj729",
+        "target_type": "Relational",
+        "table_name": "safeharbor_patient_mssp",
+        "connection": {
+          "$ref": "#/connections/bronze_safeharbor_patient_mssp_db_connection_obj729"
+        },
+        "load_mode": "append",
+        "schema": "staging",
+        "data_src_id": 1446
+      }
+    },
+    "transformations": [
+      {
+        "name": "landing_read_eob_obj727",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_eob_obj727"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": true,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "schema": [
+          {
+            "name": "json_payload",
+            "type": "string"
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string"
+          }
+        ],
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj727",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_eob_obj727"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'testing_1'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj727",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj727"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "expected_schema": [
+          {
+            "name": "json_payload",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "batch_id",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true,
+            "is_required": false
+          }
+        ],
+        "dataset_id": "eob",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_eob_obj727",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj727"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_eob_obj727"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_safeharbor_coverage_mssp_obj728",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_safeharbor_coverage_mssp_obj728"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": false,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj728",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_safeharbor_coverage_mssp_obj728"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'testing_1'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "corrupt_record",
+            "expression": "cast(null as string)"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj728",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj728"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "safeharbor_coverage_mssp",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_safeharbor_coverage_mssp_obj728",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj728"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_safeharbor_coverage_mssp_obj728"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      },
+      {
+        "name": "landing_read_safeharbor_patient_mssp_obj729",
+        "transformation": "Reader",
+        "source": {
+          "$ref": "#/sources/landing_source_safeharbor_patient_mssp_obj729"
+        },
+        "file_type": "CSV",
+        "read_options": {
+          "fetch_size": 10000,
+          "sep": ":",
+          "encoding": "UTF-8",
+          "header": false,
+          "inferSchema": false,
+          "multiLine": false,
+          "quote": "\"",
+          "escape": "\\",
+          "comment": "",
+          "preferDate": true,
+          "enforceSchema": true,
+          "ignoreLeadingWhiteSpace": false,
+          "ignoreTrailingWhiteSpace": false,
+          "nullValue": "",
+          "nanValue": "NaN",
+          "positiveInf": "Inf",
+          "negativeInf": "-Inf",
+          "dateFormat": "yyyy-MM-dd",
+          "timestampFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS][XXX]",
+          "timestampNTZFormat": "yyyy-MM-dd'T'HH:mm:ss[.SSS]",
+          "maxColumns": 20480,
+          "maxCharsPerColumn": -1,
+          "columnNameOfCorruptRecord": "corrupt_record",
+          "samplingRatio": 1.0,
+          "emptyValue": "",
+          "locale": "en-US",
+          "lineSep": "\r\n",
+          "unescapedQuoteHandling": "STOP_AT_DELIMITER",
+          "mode": "PERMISSIVE"
+        },
+        "dependent_on": []
+      },
+      {
+        "name": "add_lineage_metadata_obj729",
+        "transformation": "Expression",
+        "dependent_on": [
+          "landing_read_safeharbor_patient_mssp_obj729"
+        ],
+        "derived_fields": [
+          {
+            "name": "feed_name",
+            "expression": "'testing_1'"
+          },
+          {
+            "name": "ingest_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "ingest_year",
+            "expression": "year(current_date())"
+          },
+          {
+            "name": "ingest_month",
+            "expression": "month(current_date())"
+          },
+          {
+            "name": "ingest_day",
+            "expression": "day(current_date())"
+          },
+          {
+            "name": "created_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_ts",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "corrupt_record",
+            "expression": "cast(null as string)"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id"
+          }
+        ]
+      },
+      {
+        "name": "schema_drift_guard_obj729",
+        "transformation": "SchemaDriftGuard",
+        "dependent_on": [
+          "add_lineage_metadata_obj729"
+        ],
+        "schema_version": "v1",
+        "rescued_column": "_rescued_data",
+        "raw_record_column": "_raw_record",
+        "detect_only": true,
+        "version": "1.0.0",
+        "engine_type": "pyspark",
+        "dataset_id": "safeharbor_patient_mssp",
+        "drift_policy": {
+          "new_column": "rescue",
+          "missing_required_column": "fail_batch",
+          "type_mismatch_required": "quarantine_record",
+          "type_mismatch_optional": "rescue"
+        }
+      },
+      {
+        "name": "bronze_write_safeharbor_patient_mssp_obj729",
+        "transformation": "Writer",
+        "dependent_on": [
+          "schema_drift_guard_obj729"
+        ],
+        "target": {
+          "$ref": "#/targets/bronze_target_safeharbor_patient_mssp_obj729"
+        },
+        "write_options": {
+          "truncate": false,
+          "cascadeTruncate": false,
+          "refreshKrb5Config": false,
+          "encrypt": "false",
+          "trustServerCertificate": "false",
+          "partitionBy": [
+            "ingest_year",
+            "ingest_month",
+            "ingest_day",
+            "batch_id"
+          ]
+        }
+      }
+    ],
+    "description": "Cloned from File to DB Ingestion V2",
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "testing_1",
+      "business_date": "2026-05-20",
+      "delivery_id": "testing_1_2026-05-20",
+      "batch_id": 1,
+      "use_existing_batch_id": false,
+      "validate_existing_batch": true,
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "input_registry_processed_on_stage": "bronze",
+      "seed_stage_rows": true,
+      "stages": [
+        "bronze"
+      ],
+      "storage": {
+        "connection": {
+          "name": "control_delta",
+          "connection_type": "DatabricksDeltaLake"
+        },
+        "namespace": {
+          "catalog": "cinqdev",
+          "schema": "control"
+        }
+      },
+      "stage_to_transformations": {
+        "bronze": [
+          "landing_read_eob_obj727",
+          "add_lineage_metadata_obj727",
+          "schema_drift_guard_obj727",
+          "bronze_write_eob_obj727",
+          "landing_read_safeharbor_coverage_mssp_obj728",
+          "add_lineage_metadata_obj728",
+          "schema_drift_guard_obj728",
+          "bronze_write_safeharbor_coverage_mssp_obj728",
+          "landing_read_safeharbor_patient_mssp_obj729",
+          "add_lineage_metadata_obj729",
+          "schema_drift_guard_obj729",
+          "bronze_write_safeharbor_patient_mssp_obj729"
+        ]
+      },
+      "error_threshold_pct": 50.0,
+      "run_scope": "GROUP",
+      "atomic_commit_enabled": true,
+      "group_id": 386,
+      "expected_group_members": 3,
+      "group_run_id": "testing_1_20260520T124029Z"
+    }
+  },
+  "pipeline_type": "design",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
