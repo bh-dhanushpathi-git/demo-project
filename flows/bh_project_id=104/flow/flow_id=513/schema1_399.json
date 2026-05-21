@@ -1,6 +1,6 @@
 {
   "created_at": "2026-05-21T12:01:53.653736Z",
-  "updated_at": "2026-05-21T12:01:53.653736Z",
+  "updated_at": "2026-05-21T12:02:15.032981Z",
   "created_by": "dhanushpathi@bighammer.ai",
   "updated_by": "dhanushpathi@bighammer.ai",
   "is_deleted": false,
@@ -10,7 +10,7 @@
   "flow_name": "schema1_399",
   "flow_key": "schema1_399",
   "recipient_email": {},
-  "notes": "schema1",
+  "notes": null,
   "tags": null,
   "bh_project_name": "bighammer",
   "bh_project_id": 104,
@@ -35,7 +35,7 @@
           "flow_key": "schema1_399",
           "bh_project_id": 104,
           "recipient_email": {},
-          "notes": "schema1",
+          "notes": null,
           "tags": null,
           "status": "active",
           "alert_settings": {
@@ -308,7 +308,6 @@
                 }
               ],
               "bh_environment_id": 287,
-              "template_parameters": [],
               "bh_project_id": 104,
               "bh_environment_name": "bh_dhanu_databricks",
               "cloud_provider": "databricks",
@@ -333,7 +332,7 @@
           "flow_version_id": null,
           "schema_id": null,
           "cron_expression": null,
-          "last_deployed_at": null,
+          "last_deployed_at": "2026-05-21 12:02:13.295885+00:00",
           "tenant_id": 113,
           "is_deleted": false,
           "deleted_by": null
