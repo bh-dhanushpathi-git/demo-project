@@ -1,0 +1,383 @@
+{
+  "created_at": "2026-06-02T04:16:05.839987Z",
+  "updated_at": "2026-06-02T04:17:00.914004Z",
+  "created_by": "dhanushpathi@bighammer.ai",
+  "updated_by": "dhanushpathi@bighammer.ai",
+  "is_deleted": false,
+  "deleted_by": null,
+  "tenant_id": 113,
+  "pipeline_id": 951,
+  "pipeline_name": "silver_raw_records_target_to_test_table_load_260602_fd0d",
+  "pipeline_key": "silver_raw_records_target_to_test_table_load_260602_fd0d",
+  "bh_project_id": 104,
+  "notes": "",
+  "tags": {
+    "data_domain_id": 266,
+    "data_domain_name": "Reference",
+    "source_count": 1,
+    "target_count": 1
+  },
+  "status": "active",
+  "pipeline_version_id": null,
+  "bh_project_name": "bighammer",
+  "bh_github_username": "bh-dhanushpathi-git",
+  "pipeline_json": {
+    "$schema": "https://json-schema.org/draft-07/schema#",
+    "name": "silver_raw_records_target_to_test_table_load_260602_fd0d",
+    "description": "Requirement Pipeline",
+    "version": "1.0.0",
+    "engine_type": "pyspark",
+    "mode": "ENGINE",
+    "parameters": [],
+    "connections": {
+      "databricks_d__db_env_cinqdev": {
+        "connection_config_id": 140,
+        "name": "databricks_d__db_env_cinqdev",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "cinqdev",
+        "schema": "staging",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      },
+      "databricks_d__db_env_sasi": {
+        "connection_config_id": 140,
+        "name": "databricks_d__db_env_sasi",
+        "connection_type": "DatabricksDeltaLake",
+        "catalog": "sasi",
+        "schema": "testing_k1",
+        "secret_name": "bh-dev-westus3-kv-key-scope/bh-azureunity-databricksddbenv"
+      }
+    },
+    "sources": {
+      "records_target": {
+        "data_src_id": 2049,
+        "name": "records_target",
+        "source_type": "Relational",
+        "table_name": "records_target",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_cinqdev"
+        },
+        "fields": [
+          "id",
+          "name",
+          "corrupt_record",
+          "batch_id",
+          "feed_name",
+          "ingest_ts",
+          "ingest_year",
+          "ingest_month",
+          "ingest_day"
+        ],
+        "schema": [
+          {
+            "name": "id",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ],
+        "db_schema": "staging"
+      }
+    },
+    "targets": {
+      "test_table": {
+        "data_src_id": 2050,
+        "name": "test_table",
+        "target_type": "Relational",
+        "table_name": "test_table",
+        "load_mode": "merge",
+        "connection": {
+          "$ref": "#/connections/databricks_d__db_env_sasi"
+        },
+        "schema": "testing_k1",
+        "merge_keys": [
+          "id",
+          "name"
+        ],
+        "process_deletes": true,
+        "scd_config": {
+          "scd_type_1_columns": [
+            "name",
+            "id"
+          ]
+        },
+        "delete_config": {
+          "delete_type": "infer",
+          "delete_action": "soft_delete"
+        }
+      }
+    },
+    "transformations": [
+      {
+        "name": "records_target",
+        "transformation": "Reader",
+        "dependent_on": [],
+        "source": {
+          "$ref": "#/sources/records_target"
+        },
+        "rename_columns": {
+          "id": "id_src_1",
+          "name": "name_src_1",
+          "corrupt_record": "corrupt_record_src_1",
+          "batch_id": "batch_id_src_1",
+          "feed_name": "feed_name_src_1",
+          "ingest_ts": "ingest_ts_src_1",
+          "ingest_year": "ingest_year_src_1",
+          "ingest_month": "ingest_month_src_1",
+          "ingest_day": "ingest_day_src_1"
+        },
+        "read_options": {},
+        "schema": [
+          {
+            "name": "id",
+            "type": "long",
+            "nullable": false
+          },
+          {
+            "name": "name",
+            "type": "string",
+            "nullable": false
+          },
+          {
+            "name": "corrupt_record",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "batch_id",
+            "type": "biginteger",
+            "nullable": true
+          },
+          {
+            "name": "feed_name",
+            "type": "string",
+            "nullable": true
+          },
+          {
+            "name": "ingest_ts",
+            "type": "timestamp",
+            "nullable": true
+          },
+          {
+            "name": "ingest_year",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_month",
+            "type": "integer",
+            "nullable": true
+          },
+          {
+            "name": "ingest_day",
+            "type": "integer",
+            "nullable": true
+          }
+        ]
+      },
+      {
+        "name": "records_target_MaxBatchExpr",
+        "transformation": "Expression",
+        "dependent_on": [
+          "records_target"
+        ],
+        "derived_fields": [
+          {
+            "name": "max_batch_id",
+            "expression": "max(batch_id_src_1) OVER ()"
+          }
+        ]
+      },
+      {
+        "name": "records_target_IngestFilter",
+        "transformation": "Filter",
+        "dependent_on": [
+          "records_target_MaxBatchExpr"
+        ],
+        "condition": "batch_id_src_1 = max_batch_id AND (corrupt_record_src_1 IS NULL OR corrupt_record_src_1 = '')",
+        "persist": {
+          "enabled": true,
+          "storage_level": "MEMORY_AND_DISK",
+          "unpersist_after": [
+            "test_table"
+          ]
+        }
+      },
+      {
+        "name": "OverflowValidation",
+        "transformation": "Filter",
+        "dependent_on": [
+          "records_target_IngestFilter"
+        ],
+        "condition": "id_src_1 IS NULL OR (id_src_1 >= -2147483648 AND id_src_1 <= 2147483647)"
+      },
+      {
+        "name": "DeduplicateOnSourceSystemId",
+        "transformation": "Deduplicator",
+        "dependent_on": [
+          "OverflowValidation"
+        ],
+        "dedup_by": [
+          "id_src_1"
+        ],
+        "keep": "first",
+        "order_by": [
+          {
+            "column": "id_src_1",
+            "order": "asc"
+          }
+        ]
+      },
+      {
+        "name": "MapAndTransformFields",
+        "transformation": "Expression",
+        "dependent_on": [
+          "DeduplicateOnSourceSystemId"
+        ],
+        "derived_fields": [
+          {
+            "name": "id",
+            "expression": "CAST(id_src_1 AS INT)"
+          },
+          {
+            "name": "source_system_id",
+            "expression": "CAST(id_src_1 AS INT)"
+          },
+          {
+            "name": "name",
+            "expression": "name_src_1"
+          },
+          {
+            "name": "source_system",
+            "expression": "'RECORDS_TARGET'"
+          },
+          {
+            "name": "created_by",
+            "expression": "'records_target'"
+          },
+          {
+            "name": "updated_by",
+            "expression": "'records_target'"
+          },
+          {
+            "name": "created_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "updated_at",
+            "expression": "current_timestamp()"
+          },
+          {
+            "name": "batch_id",
+            "expression": "batch_id_src_1"
+          }
+        ],
+        "select_columns": [
+          "id",
+          "name",
+          "source_system_id",
+          "source_system",
+          "created_by",
+          "updated_by",
+          "created_at",
+          "updated_at",
+          "batch_id"
+        ]
+      },
+      {
+        "name": "test_table_final",
+        "transformation": "Expression",
+        "dependent_on": [
+          "MapAndTransformFields"
+        ],
+        "rename_columns": {},
+        "select_columns": [
+          "id",
+          "name",
+          "source_system_id",
+          "source_system",
+          "created_by",
+          "updated_by",
+          "created_at",
+          "updated_at",
+          "batch_id"
+        ]
+      },
+      {
+        "name": "test_table",
+        "transformation": "Writer",
+        "dependent_on": [
+          "test_table_final"
+        ],
+        "target": {
+          "$ref": "#/targets/test_table"
+        },
+        "write_options": {
+          "mode": "merge",
+          "createDisposition": "CREATE_IF_NEEDED",
+          "writeMethod": "direct"
+        }
+      }
+    ],
+    "batch_control": {
+      "enabled": true,
+      "feed_name": "silver_raw_records_target_to_test_table_load_260602_fd0d",
+      "business_date": "2026-06-02",
+      "stages": [
+        "silver_raw"
+      ],
+      "stage_to_transformations": {
+        "silver_raw": []
+      },
+      "require_input_acceptance": true,
+      "auto_accept_input_on_batch_init": true,
+      "seed_stage_rows": true
+    }
+  },
+  "pipeline_type": "requirement",
+  "engine_type": "pyspark",
+  "total_test_scenario": null,
+  "passed_test": null,
+  "failed_test": null,
+  "sme_recommendations_count": null,
+  "process_status": null,
+  "pipeline_parameters": []
+}
